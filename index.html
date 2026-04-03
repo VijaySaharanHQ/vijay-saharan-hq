@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vijay Saharan HQ | Digital Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            background: radial-gradient(circle at top right, #1e293b, #0f172a, #020617);
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+        }
+        .card-glow {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-glow:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: #3b82f6;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-16">
+
+    <header class="max-w-4xl mx-auto text-center mb-20">
+       
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
+            Vijay <span class="gradient-text">Saharan</span> HQ
+        </h1>
+        <p class="text-gray-400 text-lg md:text-xl leading-relaxed">
+            Your all-in-one hub for tech, coding, gaming, education, and creativity.
+        </p>
+		 <div class="max-w-6xl mx-auto mb-12 flex flex-col md:flex-row gap-4 items-center">
+    <div class="relative w-full md:w-2/3">
+        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+        <input type="text" id="searchInput" onkeyup="searchItems()" placeholder="Search from 100+ courses, notes, and platforms..." 
+               class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-blue-500 transition-all">
+    </div>
+    
+    <select id="categoryFilter" onchange="searchItems()" class="w-full md:w-1/3 bg-white/5 border border-white/10 rounded-2xl py-4 px-4 text-gray-400 focus:outline-none focus:border-blue-500">
+        <option value="All">All Categories</option>
+        <option value="Development">Development (50+)</option>
+        <option value="Education">Education (Notes)</option>
+        <option value="Platforms">My Platforms</option>
+        <option value="Gaming">Gaming & Creative</option>
+    </select>
+</div>
+		<div class="inline-block bg-blue-500/10 text-blue-400 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4 border border-blue-500/20">
+            Digital Ecosystem 2026
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto">
+        <div id="platform-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+    </div>
+
+    <footer class="mt-32 text-center text-gray-500 text-sm">
+        <p>&copy; 2026 Vijay Saharan. All rights reserved.</p>
+    </footer>
+
+ <script>
+    const myWhatsApp = "919876543210";
+    let database = []; // This starts empty and gets filled by the file
+
+    const container = document.getElementById('platform-grid');
+
+    // --- THE FETCH FUNCTION ---
+    // This connects your HTML to your JSON file
+    async function loadData() {
+        try {
+            const response = await fetch('courses.json'); // Path to your file
+            database = await response.json();
+            searchItems(); // Initial render after data loads
+        } catch (error) {
+            console.error("Error loading courses:", error);
+            container.innerHTML = `<p class="text-red-500">Failed to load courses. Please check if courses.json exists.</p>`;
+        }
+    }
+
+    function searchItems() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const category = document.getElementById('categoryFilter').value;
+        
+        container.innerHTML = ""; 
+
+        const filtered = database.filter(item => {
+            const matchesSearch = item.name.toLowerCase().includes(query);
+            const matchesCategory = (category === "All" || item.cat === category);
+            return matchesSearch && matchesCategory;
+        });
+
+        if (filtered.length === 0) {
+            container.innerHTML = `<div class="col-span-full text-center py-20 text-gray-500 italic text-xl">No results found for "${query}"</div>`;
+            return;
+        }
+
+        filtered.forEach(s => {
+            const badge = s.isPaid ? `<div class="absolute top-6 right-6 bg-amber-500/20 text-amber-400 text-[10px] font-black px-3 py-1 rounded-full border border-amber-500/30">PREMIUM</div>` : '';
+            const btn = s.isPaid 
+                ? `<a href="https://wa.me/${myWhatsApp}?text=Buy ${s.name}" class="w-full mt-6 py-3 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-xl text-center transition-all">BUY NOW ${s.price}</a>`
+                : `<a href="${s.url}" class="mt-auto text-sm font-bold text-blue-400 hover:underline">EXPLORE NOW →</a>`;
+
+            container.innerHTML += `
+                <div class="card-glow p-8 rounded-3xl flex flex-col items-start text-left relative overflow-hidden bg-white/5 border border-white/10 h-full">
+                    ${badge}
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 border border-white/10">
+                        <i class="fas ${s.icon} text-2xl ${s.isPaid ? 'text-amber-400' : 'text-blue-400'}"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">${s.cat}</span>
+                    <h3 class="text-xl font-bold mb-3 text-white">${s.name}</h3>
+                    ${btn}
+                </div>
+            `;
+        });
+    }
+
+    // Start the engine
+    loadData();
+</script>
+</body>
+</html>

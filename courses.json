@@ -1,0 +1,23 @@
+[
+    { 
+        "name": "Full-Stack Web Dev", 
+        "icon": "fa-code", 
+        "cat": "Development", 
+        "isPaid": true, 
+        "price": "₹999" 
+    },
+    { 
+        "name": "Python Masterclass", 
+        "icon": "fa-brands fa-python", 
+        "cat": "Development", 
+        "isPaid": true, 
+        "price": "₹499" 
+    },
+    { 
+        "name": "Class 10 Science Notes", 
+        "icon": "fa-book", 
+        "cat": "Education", 
+        "isPaid": false, 
+        "url": "https://pccodelite.com/notes" 
+    }
+]

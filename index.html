@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vijay Saharan | Digital Innovation & Education Hub</title>
+    <title>Vijay Saharan | India's Digital Education Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -13,10 +13,12 @@
         .navbar { background: white; border-bottom: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
         .course-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; transition: all 0.3s ease; }
         .course-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1); border-color: #7c3aed; }
-        .btn-primary { background-color: #7c3aed; color: white; padding: 12px 24px; border-radius: 8px; font-weight: 700; display: inline-block; transition: 0.2s; }
+        .btn-primary { background-color: #7c3aed; color: white; padding: 12px 24px; border-radius: 8px; font-weight: 700; display: inline-block; transition: 0.2s; text-align: center; }
         .btn-primary:hover { background-color: #6d28d9; transform: scale(1.02); }
         .section-title { position: relative; display: inline-block; padding-bottom: 10px; }
-        .section-title::after { content: ''; width: 50%; height: 4px; background: #7c3aed; position: absolute; bottom: 0; left: 0; border-radius: 2px; }
+        .section-title::after { content: ''; width: 60px; height: 4px; background: #7c3aed; position: absolute; bottom: 0; left: 0; border-radius: 2px; }
+        .testimonial-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; transition: 0.3s; }
+        .testimonial-card:hover { border-color: #7c3aed; background: #fdfbff; }
     </style>
 </head>
 <body>
@@ -27,119 +29,131 @@
             <div class="hidden md:flex gap-8 font-bold text-gray-600 text-sm">
                 <a href="#home" class="hover:text-purple-600">Home</a>
                 <a href="#courses" class="hover:text-purple-600">Courses</a>
-                <a href="#about" class="hover:text-purple-600">About Brand</a>
-                <a href="#platforms" class="hover:text-purple-600">Our Platforms</a>
+                <a href="#testimonials" class="hover:text-purple-600">Reviews</a>
+                <a href="#about" class="hover:text-purple-600">About</a>
             </div>
         </div>
     </nav>
 
-    <main id="home" class="max-w-7xl mx-auto px-4 pt-20 pb-12">
-        <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
-            <div class="md:w-1/2 text-left">
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-                    Your All-In-One <span class="text-purple-600">Tech Hub.</span>
+    <main id="home" class="max-w-7xl mx-auto px-4 pt-16 pb-12">
+        <div class="flex flex-col md:flex-row items-center gap-12 mb-20 text-center md:text-left">
+            <div class="md:w-1/2">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+                    Learn. Code. <span class="text-purple-600">Create.</span>
                 </h1>
-                <p class="text-gray-500 text-xl mb-8 font-medium">
-                    "Vijay Saharan — Your all-in-one hub for tech, coding, gaming, education, and creativity." Join 1000+ students learning daily.
+                <p class="text-gray-500 text-lg mb-8 font-medium">
+                    "Vijay Saharan — Your all-in-one hub for tech, coding, gaming, education, and creativity." Trusted by students across India.
                 </p>
-                <div class="flex gap-4">
-                    <a href="#courses" class="btn-primary">Browse Courses</a>
-                    <a href="#about" class="border-2 border-gray-200 px-6 py-3 rounded-lg font-bold hover:bg-gray-50 transition">Learn More</a>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#courses" class="btn-primary">Browse 100+ Courses</a>
+                    <a href="#testimonials" class="border-2 border-gray-200 px-6 py-3 rounded-lg font-bold hover:bg-gray-50 transition text-center">Student Reviews</a>
                 </div>
             </div>
-            <div class="md:w-1/2 bg-purple-100 rounded-3xl p-8 flex items-center justify-center">
-                <i class="fas fa-rocket text-[150px] text-purple-500 animate-bounce"></i>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 bg-purple-100 rounded-full flex items-center justify-center border-8 border-white shadow-xl overflow-hidden">
+                    <i class="fas fa-user-graduate text-purple-500 text-[120px]"></i>
+                </div>
             </div>
         </div>
 
-        <section id="about" class="py-20 border-t border-gray-100">
-            <h2 class="text-3xl font-extrabold mb-12 section-title">About Our Brand</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
-                    <i class="fas fa-bullseye text-3xl text-purple-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Our Mission</h3>
-                    <p class="text-gray-500 text-sm">To make technology, coding, and quality education accessible to every student through structured paths and practical projects.</p>
+        <section id="about" class="py-16 border-t border-gray-100">
+            <h2 class="text-3xl font-extrabold mb-10 section-title">About Our Mission</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-gray-100">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-4 text-xl"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="font-bold text-lg mb-2 text-gray-800">Quality Content</h3>
+                    <p class="text-gray-500 text-sm">Step-by-step notes and practical video tutorials designed for easy understanding.</p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
-                    <i class="fas fa-eye text-3xl text-blue-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Our Vision</h3>
-                    <h4 class="text-gray-500 text-sm">To create India's leading digital innovation hub where creativity meets technical excellence.</h4>
+                <div class="bg-white p-6 rounded-xl border border-gray-100">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4 text-xl"><i class="fas fa-rocket"></i></div>
+                    <h3 class="font-bold text-lg mb-2 text-gray-800">Future Ready</h3>
+                    <p class="text-gray-500 text-sm">Courses that prepare you for the real world, from Web Dev to Competitive Exams.</p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
-                    <i class="fas fa-graduation-cap text-3xl text-green-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Expert Mentorship</h3>
-                    <p class="text-gray-500 text-sm">Guided by Vijay Saharan, a Computer Science specialist dedicated to simplifying complex tech for everyone.</p>
+                <div class="bg-white p-6 rounded-xl border border-gray-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mb-4 text-xl"><i class="fas fa-users"></i></div>
+                    <h3 class="font-bold text-lg mb-2 text-gray-800">Growing Community</h3>
+                    <p class="text-gray-500 text-sm">Join a massive network of learners through PC CodeLite and Saharan Academy.</p>
                 </div>
             </div>
         </section>
 
-        <section id="courses" class="py-12">
-            <h2 class="text-3xl font-extrabold mb-8 section-title">Explore 100+ Resources</h2>
-            <div class="flex flex-col md:flex-row gap-4 mb-12">
-                <input type="text" id="searchInput" onkeyup="renderHub()" placeholder="Search courses (Python, Physics, Web Dev...)" 
-                       class="w-full md:w-2/3 border-2 border-gray-200 rounded-xl py-4 px-6 focus:border-purple-600 focus:outline-none shadow-sm">
-                <select id="categoryFilter" onchange="renderHub()" class="bg-white border-2 border-gray-200 rounded-xl py-4 px-6 font-bold text-gray-600">
+        <section id="courses" class="py-16">
+            <h2 class="text-3xl font-extrabold mb-8 section-title">Explore Courses</h2>
+            <div class="flex flex-col md:flex-row gap-4 mb-10">
+                <input type="text" id="searchInput" onkeyup="renderHub()" placeholder="Search from 100+ resources..." 
+                       class="w-full md:w-3/4 border-2 border-gray-100 rounded-xl py-4 px-6 focus:border-purple-600 focus:outline-none shadow-sm">
+                <select id="categoryFilter" onchange="renderHub()" class="bg-white border-2 border-gray-100 rounded-xl py-4 px-6 font-bold text-gray-600">
                     <option value="All">All Categories</option>
-                    <option value="Development">Development</option>
+                    <option value="Development">Coding</option>
                     <option value="Education">Education</option>
-                    <option value="Platforms">Our Platforms</option>
+                    <option value="Platforms">Platforms</option>
                 </select>
             </div>
-
-            <div id="platform-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                </div>
+            <div id="platform-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
 
-        <section id="platforms" class="py-20 border-t border-gray-100">
-            <h2 class="text-3xl font-extrabold mb-12 section-title">Our Digital Ecosystem</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div class="p-6 bg-white rounded-xl border border-gray-100 hover:shadow-md transition">
-                    <div class="font-bold text-purple-600">Saharan Academy</div>
-                    <div class="text-xs text-gray-400 mt-1">LMS Portal</div>
+        <section id="testimonials" class="py-16 border-t border-gray-100">
+            <h2 class="text-3xl font-extrabold mb-12 section-title">What Our Students Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card">
+                    <div class="text-yellow-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-600 italic mb-6">"The Python course is amazing. Vijay explains every concept so simply that even a beginner like me could build a website in a week!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">A</div>
+                        <div><h4 class="font-bold text-sm">Aryan Sharma</h4><p class="text-xs text-gray-400">CS Student</p></div>
+                    </div>
                 </div>
-                <div class="p-6 bg-white rounded-xl border border-gray-100 hover:shadow-md transition">
-                    <div class="font-bold text-purple-600">PC CodeLite</div>
-                    <div class="text-xs text-gray-400 mt-1">Coding Hub</div>
+                <div class="testimonial-card">
+                    <div class="text-yellow-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-600 italic mb-6">"Best Physics notes for Class 12. These notes helped me clear my concepts and score 95+ in my pre-boards. Highly recommended!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">P</div>
+                        <div><h4 class="font-bold text-sm">Priya Verma</h4><p class="text-xs text-gray-400">Class 12 Student</p></div>
+                    </div>
                 </div>
-                <div class="p-6 bg-white rounded-xl border border-gray-100 hover:shadow-md transition">
-                    <div class="font-bold text-purple-600">Saharan Studio</div>
-                    <div class="text-xs text-gray-400 mt-1">Media House</div>
-                </div>
-                <div class="p-6 bg-white rounded-xl border border-gray-100 hover:shadow-md transition">
-                    <div class="font-bold text-purple-600">TechVerse</div>
-                    <div class="text-xs text-gray-400 mt-1">Innovation Lab</div>
+                <div class="testimonial-card">
+                    <div class="text-yellow-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                    <p class="text-gray-600 italic mb-6">"UPSC Question Bank is a goldmine for aspirants. The structure is very professional and saves so much time."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">K</div>
+                        <div><h4 class="font-bold text-sm">Karan Deep</h4><p class="text-xs text-gray-400">UPSC Aspirant</p></div>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-white border-t border-gray-200 py-16">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-                <div class="text-2xl font-black text-purple-600 mb-4 uppercase">VIJAY SAHARAN</div>
-                <p class="text-gray-500 text-sm leading-relaxed">The ultimate destination for students, developers, and creators. Building the future, one byte at a time.</p>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4 uppercase tracking-widest text-xs">Quick Links</h4>
-                <div class="flex flex-col gap-2 text-sm text-gray-600">
-                    <a href="#" class="hover:text-purple-600">Privacy Policy</a>
-                    <a href="#" class="hover:text-purple-600">Terms of Service</a>
-                    <a href="#" class="hover:text-purple-600">Refund Policy</a>
+    <footer class="bg-gray-900 text-gray-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="text-2xl font-black text-white mb-6 uppercase">VIJAY SAHARAN</div>
+                <p class="max-w-sm mb-6">Leading the digital education revolution. Join thousands of learners mastering the future of technology.</p>
+                <div class="flex gap-4 text-xl">
+                    <a href="#" class="hover:text-purple-400"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="hover:text-purple-400"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-purple-400"><i class="fab fa-github"></i></a>
                 </div>
             </div>
             <div>
-                <h4 class="font-bold mb-4 uppercase tracking-widest text-xs">Follow Us</h4>
-                <div class="flex gap-4 text-xl text-gray-400">
-                    <a href="#" class="hover:text-purple-600"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="hover:text-purple-600"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="hover:text-purple-600"><i class="fab fa-github"></i></a>
-                    <a href="#" class="hover:text-purple-600"><i class="fab fa-linkedin"></i></a>
-                </div>
+                <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#home" class="hover:text-white">Home</a></li>
+                    <li><a href="#courses" class="hover:text-white">Courses</a></li>
+                    <li><a href="#about" class="hover:text-white">About Brand</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white">Terms of Use</a></li>
+                    <li><a href="#" class="hover:text-white">Refund Policy</a></li>
+                </ul>
             </div>
         </div>
-        <div class="text-center mt-12 text-gray-400 text-xs font-bold uppercase tracking-widest">
-            © 2026 Vijay Saharan Global. All Rights Reserved.
+        <div class="text-center mt-12 border-t border-gray-800 pt-8 text-xs font-bold uppercase tracking-widest">
+            © 2026 VIJAY SAHARAN | Your All-in-One Tech Hub
         </div>
     </footer>
 
@@ -172,16 +186,16 @@
                 container.innerHTML += `
                     <div class="course-card flex flex-col h-full overflow-hidden">
                         <div class="h-40 bg-gray-50 flex items-center justify-center relative border-b border-gray-100">
-                            <i class="fas ${s.icon} text-5xl text-gray-200"></i>
+                            <i class="fas ${s.icon} text-5xl text-gray-300"></i>
                             ${isPaid ? '<span class="absolute top-4 right-4 bg-yellow-400 text-black text-[10px] font-black px-2 py-1 rounded">PREMIUM</span>' : ''}
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <span class="text-[10px] font-black text-purple-600 uppercase mb-2 tracking-widest">${s.cat}</span>
-                            <h3 class="text-xl font-bold mb-4 text-gray-800">${s.name}</h3>
+                            <h3 class="text-lg font-bold mb-4 text-gray-800">${s.name}</h3>
                             <div class="mt-auto">
                                 ${isPaid 
-                                    ? `<a href="https://wa.me/${myWhatsApp}?text=I want to enroll in ${s.name}" target="_blank" class="btn-primary w-full text-center">Enroll Now (${s.price})</a>`
-                                    : `<a href="${s.url}" target="_blank" class="w-full py-3 bg-gray-800 text-white rounded-lg text-center font-bold block hover:bg-black transition">Access Course</a>`
+                                    ? `<a href="https://wa.me/${myWhatsApp}?text=I want to enroll in ${s.name}" target="_blank" class="btn-primary w-full">Enroll Now (${s.price})</a>`
+                                    : `<a href="${s.url}" target="_blank" class="btn-primary w-full bg-gray-800 hover:bg-black border-none">Access Free</a>`
                                 }
                             </div>
                         </div>

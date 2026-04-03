@@ -3,77 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vijay Saharan HQ | Digital Ecosystem</title>
+    <title>Vijay Saharan | Learn Coding & Tech</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
         body { 
-            background: radial-gradient(circle at top right, #1e293b, #0f172a, #020617);
-            color: #f8fafc;
+            background-color: #f8fafc; 
+            color: #1e293b; 
             font-family: 'Plus Jakarta Sans', sans-serif;
-            min-height: 100vh;
         }
-        .card-glow {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
             transition: all 0.3s ease;
         }
-        .card-glow:hover {
-            border-color: #3b82f6;
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.06);
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+            border-color: #7c3aed;
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .btn-primary {
+            background-color: #7c3aed;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #6d28d9;
+        }
+        .search-input {
+            border: 2px solid #e2e8f0;
+            transition: border-color 0.2s;
+        }
+        .search-input:focus {
+            border-color: #7c3aed;
+            outline: none;
         }
     </style>
 </head>
-<body class="p-6 md:p-12">
+<body>
 
-    <header class="max-w-4xl mx-auto text-center mb-16">
-        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">
-            Vijay <span class="gradient-text">Saharan</span> HQ
-        </h1>
-        <p class="text-gray-400 text-lg">Tech, Coding, Gaming, and Education Hub</p>
-    </header>
-
-    <div class="max-w-6xl mx-auto mb-10 flex flex-col md:flex-row gap-4">
-        <div class="relative flex-grow">
-            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
-            <input type="text" id="searchInput" onkeyup="renderHub()" placeholder="Search 100+ resources..." 
-                   class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-blue-500 transition-all">
-        </div>
-        <select id="categoryFilter" onchange="renderHub()" class="bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-gray-400 focus:outline-none focus:border-blue-500">
-            <option value="All">All Categories</option>
-            <option value="Development">Development</option>
-            <option value="Education">Education</option>
-            <option value="Platforms">My Platforms</option>
-        </select>
-    </div>
-
-    <div class="max-w-6xl mx-auto">
-        <div id="platform-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <nav class="navbar sticky top-0 z-50 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-black text-purple-600 tracking-tighter">VIJAY SAHARAN</div>
+            <div class="hidden md:flex gap-8 font-bold text-gray-600">
+                <a href="#" class="hover:text-purple-600">Home</a>
+                <a href="#" class="hover:text-purple-600">Courses</a>
+                <a href="#" class="hover:text-purple-600">Free Notes</a>
+                <a href="#" class="hover:text-purple-600">Contact</a>
             </div>
-    </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-16">
+        
+        <section class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6">
+                Master <span class="text-purple-600">Technology</span> with Vijay
+            </h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto mb-10 font-medium">
+                Confused among various technologies? Start your journey with our highly curated free resources and premium masterclasses.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-4 max-w-3xl mx-auto">
+                <input type="text" id="searchInput" onkeyup="renderHub()" placeholder="Search from 100+ courses..." 
+                       class="search-input w-full md:w-2/3 bg-white rounded-xl py-4 px-6 shadow-sm text-lg">
+                <select id="categoryFilter" onchange="renderHub()" class="search-input bg-white rounded-xl py-4 px-6 shadow-sm font-bold text-gray-600">
+                    <option value="All">All Categories</option>
+                    <option value="Development">Coding (Dev)</option>
+                    <option value="Education">School/College</option>
+                    <option value="Platforms">My Network</option>
+                </select>
+            </div>
+        </section>
+
+        <div id="platform-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-20 py-12 text-center">
+        <p class="text-gray-400 font-bold mb-4">© 2026 VIJAY SAHARAN HQ</p>
+        <div class="flex justify-center gap-6 text-gray-400 text-xl">
+            <a href="#" class="hover:text-purple-600"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-purple-600"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-purple-600"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-purple-600"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
 
     <script>
         const myWhatsApp = "919876543210"; // REPLACE WITH YOUR NUMBER
         let database = [];
 
-        // Load data from external JSON
         async function init() {
             try {
-                const res = await fetch('courses.json');
+                // Fetch with Cache Buster
+                const res = await fetch('courses.json?v=' + new Date().getTime());
                 database = await res.json();
                 renderHub();
             } catch (err) {
-                console.error("Data load failed", err);
-                document.getElementById('platform-grid').innerHTML = "<p class='text-center col-span-full text-red-400'>Error loading course data.</p>";
+                console.error("Failed to load database", err);
             }
         }
 
@@ -92,19 +134,26 @@
 
             filtered.forEach(s => {
                 const isPaid = s.isPaid === true;
-                const badge = isPaid ? `<div class="absolute top-4 right-4 bg-amber-500 text-black text-[10px] font-bold px-2 py-1 rounded">PREMIUM</div>` : '';
                 
-                const btn = isPaid 
-                    ? `<a href="https://wa.me/${myWhatsApp}?text=I want to buy ${s.name}" target="_blank" class="w-full mt-auto py-3 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-xl text-center transition-all">BUY NOW ${s.price}</a>`
-                    : `<a href="${s.url}" target="_blank" class="mt-auto text-blue-400 font-bold hover:underline">EXPLORE NOW →</a>`;
-
                 container.innerHTML += `
-                    <div class="card-glow p-8 rounded-3xl flex flex-col items-start relative overflow-hidden h-full">
-                        ${badge}
-                        <i class="fas ${s.icon} text-3xl mb-6 ${isPaid ? 'text-amber-400' : 'text-blue-400'}"></i>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">${s.cat}</span>
-                        <h3 class="text-xl font-bold mb-4">${s.name}</h3>
-                        ${btn}
+                    <div class="course-card flex flex-col overflow-hidden">
+                        <div class="h-44 bg-gray-100 flex items-center justify-center relative border-b border-gray-100">
+                            <i class="fas ${s.icon} text-6xl text-gray-300"></i>
+                            ${isPaid ? '<span class="absolute top-4 right-4 bg-yellow-400 text-black text-[10px] font-extrabold px-2 py-1 rounded shadow-sm">PREMIUM</span>' : ''}
+                        </div>
+                        
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-[11px] font-black text-purple-600 uppercase tracking-wider mb-2">${s.cat}</span>
+                            <h3 class="text-xl font-bold mb-4 text-gray-800 leading-tight">${s.name}</h3>
+                            <p class="text-gray-500 text-sm mb-6 line-clamp-2">Master ${s.name} with step-by-step notes and practical examples designed by Vijay Saharan.</p>
+                            
+                            <div class="mt-auto">
+                                ${isPaid 
+                                    ? `<a href="https://wa.me/${myWhatsApp}?text=Buy ${s.name}" target="_blank" class="btn-primary w-full shadow-lg shadow-purple-200">Start Learning (${s.price})</a>`
+                                    : `<a href="${s.url}" target="_blank" class="btn-primary w-full bg-gray-800 hover:bg-black shadow-lg shadow-gray-200">Start Learning</a>`
+                                }
+                            </div>
+                        </div>
                     </div>
                 `;
             });

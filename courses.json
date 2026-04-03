@@ -1,23 +1,10 @@
 [
-    { 
-        "name": "Full-Stack Web Dev", 
-        "icon": "fa-code", 
-        "cat": "Development", 
-        "isPaid": true, 
-        "price": "₹999" 
-    },
-    { 
-        "name": "Python Masterclass", 
-        "icon": "fa-brands fa-python", 
-        "cat": "Development", 
-        "isPaid": true, 
-        "price": "₹499" 
-    },
-    { 
-        "name": "Class 10 Science Notes", 
-        "icon": "fa-book", 
-        "cat": "Education", 
-        "isPaid": false, 
-        "url": "https://pccodelite.com/notes" 
-    }
+  { "name": "Full-Stack Web Dev", "icon": "fa-code", "cat": "Development", "isPaid": true, "price": "₹999" },
+  { "name": "Python Masterclass", "icon": "fa-brands fa-python", "cat": "Development", "isPaid": true, "price": "₹499" },
+  { "name": "Class 10 Science Notes", "icon": "fa-book", "cat": "Education", "isPaid": false, "url": "#" },
+  { "name": "PC CodeLite Hub", "icon": "fa-terminal", "cat": "Platforms", "isPaid": false, "url": "https://github.com/pccodelitehub" },
+  { "name": "Saharan Academy", "icon": "fa-graduation-cap", "cat": "Platforms", "isPaid": false, "url": "#" },
+  { "name": "UPSC History Bank", "icon": "fa-landmark", "cat": "Education", "isPaid": true, "price": "₹199" },
+  { "name": "Java Data Structures", "icon": "fa-gears", "cat": "Development", "isPaid": true, "price": "₹799" },
+  { "name": "PC TechLite Gaming", "icon": "fa-gamepad", "cat": "Platforms", "isPaid": false, "url": "#" }
 ]

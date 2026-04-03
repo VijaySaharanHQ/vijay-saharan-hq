@@ -3,214 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vijay Saharan | Digital Education & Tech Hub</title>
+    <title>Vijay Saharan | Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    
     <style>
-        body { background-color: #f8fafc; color: #1e293b; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .navbar { background: white; border-bottom: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .course-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; transition: all 0.3s ease; }
-        .course-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1); border-color: #7c3aed; }
-        .btn-primary { background-color: #7c3aed; color: white; padding: 12px 24px; border-radius: 8px; font-weight: 700; display: inline-block; transition: 0.2s; text-align: center; cursor: pointer; }
-        .btn-primary:hover { background-color: #6d28d9; }
-        
-        /* Modal System */
-        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
-        .modal-content { background-color: white; margin: 5% auto; padding: 40px; border-radius: 20px; width: 90%; max-width: 800px; max-height: 80vh; overflow-y: auto; position: relative; }
-        .close-modal { position: absolute; right: 25px; top: 20px; font-size: 28px; cursor: pointer; color: #94a3b8; }
+        body { background-color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .nav-link:hover { color: #7c3aed; }
+        .course-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; transition: 0.3s; }
+        .course-card:hover { transform: translateY(-5px); border-color: #7c3aed; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
-
-    <nav class="navbar sticky top-0 z-50 p-4">
+    <nav class="bg-white border-b sticky top-0 z-50 p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="text-2xl font-black text-purple-600 tracking-tighter uppercase cursor-pointer" onclick="window.scrollTo(0,0)">VIJAY SAHARAN</div>
+            <a href="index.html" class="text-2xl font-black text-purple-600 tracking-tighter">VIJAY SAHARAN</a>
             <div class="hidden md:flex gap-8 font-bold text-gray-600 text-sm">
-                <a href="#courses" class="hover:text-purple-600">Courses</a>
-                <a onclick="openModal('about-me')" class="hover:text-purple-600 cursor-pointer">About Me</a>
-                <a onclick="openModal('contact')" class="hover:text-purple-600 cursor-pointer">Contact</a>
-                <a href="#testimonials" class="hover:text-purple-600">Reviews</a>
+                <a href="index.html" class="text-purple-600">Home</a>
+                <a href="about.html" class="nav-link">About Me</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="policy.html" class="nav-link">Policies</a>
             </div>
         </div>
     </nav>
 
-    <main id="home" class="max-w-7xl mx-auto px-4 pt-16 pb-12">
-        <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
-            <div class="md:w-1/2 text-center md:text-left">
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">Master The <span class="text-purple-600">Future</span> of Tech.</h1>
-                <p class="text-gray-500 text-lg mb-8 font-medium">Step-by-step guidance for Coding, Web Development, and Academic Excellence. Your journey to professional success starts here.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#courses" class="btn-primary">Explore 100+ Resources</a>
-                    <button onclick="openModal('contact')" class="border-2 border-gray-200 px-6 py-3 rounded-lg font-bold hover:bg-gray-50 transition">Get in Touch</button>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="w-64 h-64 md:w-80 md:h-80 bg-purple-100 rounded-full flex items-center justify-center border-8 border-white shadow-xl">
-                    <i class="fas fa-user-graduate text-purple-500 text-[120px]"></i>
-                </div>
-            </div>
-        </div>
+    <header class="py-20 text-center px-4 bg-white border-b">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Master <span class="text-purple-600">Tech</span> Skills.</h1>
+        <p class="text-gray-500 text-xl max-w-2xl mx-auto font-medium">Your all-in-one hub for coding, gaming, and education. Access 100+ premium resources today.</p>
+    </header>
 
-        <section id="courses" class="py-16">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
-                <div>
-                    <h2 class="text-3xl font-extrabold mb-2">Our Library</h2>
-                    <p class="text-gray-400">Find the best resources for your career.</p>
-                </div>
-                <div class="flex gap-4 w-full md:w-auto">
-                    <input type="text" id="searchInput" onkeyup="renderHub()" placeholder="Search..." class="border-2 border-gray-100 rounded-xl py-2 px-4 focus:border-purple-600 focus:outline-none">
-                    <select id="categoryFilter" onchange="renderHub()" class="border-2 border-gray-100 rounded-xl py-2 px-4 font-bold text-gray-500 text-sm">
-                        <option value="All">All</option>
-                        <option value="Development">Coding</option>
-                        <option value="Education">Education</option>
-                    </select>
-                </div>
-            </div>
-            <div id="platform-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-900 text-gray-400 py-16 mt-20">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="col-span-1 md:col-span-2">
-                <div class="text-2xl font-black text-white mb-6 uppercase">VIJAY SAHARAN</div>
-                <p class="max-w-sm mb-6">Building the ultimate ecosystem for tech enthusiasts and students. Professional mentorship at your fingertips.</p>
-                <div class="flex gap-4 text-xl">
-                    <a href="https://wa.me/919876543210" class="hover:text-green-400"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="hover:text-purple-400"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="hover:text-purple-400"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">About Me</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a onclick="openModal('about-me')" class="hover:text-white cursor-pointer">Who is Vijay?</a></li>
-                    <li><a onclick="openModal('contact')" class="hover:text-white cursor-pointer">Contact Me</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Legal & Policy</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a onclick="openModal('privacy')" class="hover:text-white cursor-pointer">Privacy Policy</a></li>
-                    <li><a onclick="openModal('terms')" class="hover:text-white cursor-pointer">Terms of Use</a></li>
-                    <li><a onclick="openModal('refund')" class="hover:text-white cursor-pointer">Refund Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="text-center mt-12 border-t border-gray-800 pt-8 text-xs font-bold uppercase tracking-widest">
-            © 2026 VIJAY SAHARAN GLOBAL
-        </div>
-    </footer>
-
-    <div id="modalContainer" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div id="modalBody" class="prose max-w-none">
-                </div>
-        </div>
+    <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
+        <input type="text" id="searchInput" onkeyup="renderHub()" placeholder="Search courses (Python, Physics...)" class="flex-grow p-4 rounded-xl border-2 border-gray-100 focus:border-purple-600 outline-none shadow-sm">
+        <select id="categoryFilter" onchange="renderHub()" class="p-4 rounded-xl border-2 border-gray-100 font-bold text-gray-500">
+            <option value="All">All Categories</option>
+            <option value="Development">Coding</option>
+            <option value="Education">Education</option>
+            <option value="Platforms">Platforms</option>
+        </select>
     </div>
+
+    <div id="platform-grid" class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-24">
+        </div>
 
     <script>
         const myWhatsApp = "919876543210"; 
         let database = [];
-
         async function init() {
-            try {
-                const res = await fetch('courses.json?v=' + new Date().getTime());
-                database = await res.json();
-                renderHub();
-            } catch (err) { console.error(err); }
+            const res = await fetch('courses.json?v=' + new Date().getTime());
+            database = await res.json();
+            renderHub();
         }
-
         function renderHub() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const category = document.getElementById('categoryFilter').value;
             const container = document.getElementById('platform-grid');
             container.innerHTML = "";
-            const filtered = database.filter(item => {
-                const matchSearch = item.name.toLowerCase().includes(query);
-                const matchCat = (category === "All" || item.cat === category);
-                return matchSearch && matchCat;
-            });
-            filtered.forEach(s => {
-                const isPaid = s.isPaid === true;
+            database.filter(item => (item.name.toLowerCase().includes(query)) && (category === "All" || item.cat === category))
+            .forEach(s => {
                 container.innerHTML += `
-                    <div class="course-card flex flex-col h-full overflow-hidden">
-                        <div class="h-40 bg-gray-50 flex items-center justify-center border-b border-gray-100">
-                            <i class="fas ${s.icon} text-5xl text-gray-200"></i>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <span class="text-[10px] font-black text-purple-600 uppercase mb-2 tracking-widest">${s.cat}</span>
-                            <h3 class="text-lg font-bold mb-4 text-gray-800">${s.name}</h3>
-                            <div class="mt-auto">
-                                ${isPaid 
-                                    ? `<a href="https://wa.me/${myWhatsApp}?text=Buy ${s.name}" target="_blank" class="btn-primary w-full">Enroll Now (${s.price})</a>`
-                                    : `<a href="${s.url}" target="_blank" class="btn-primary w-full bg-gray-800 hover:bg-black border-none">Access Free</a>`
-                                }
-                            </div>
-                        </div>
-                    </div>`;
+                <div class="course-card p-6 flex flex-col h-full">
+                    <div class="h-40 bg-slate-50 rounded-xl mb-6 flex items-center justify-center text-slate-300 text-5xl">
+                        <i class="fas ${s.icon}"></i>
+                    </div>
+                    <span class="text-[10px] font-black text-purple-600 uppercase tracking-widest mb-2">${s.cat}</span>
+                    <h3 class="text-xl font-bold mb-6 text-gray-800">${s.name}</h3>
+                    <div class="mt-auto">
+                        <a href="${s.isPaid ? 'https://wa.me/'+myWhatsApp+'?text=I want to buy '+s.name : s.url}" class="block w-full py-4 ${s.isPaid ? 'bg-purple-600 shadow-lg shadow-purple-100' : 'bg-gray-800'} text-white text-center rounded-xl font-bold hover:opacity-90">
+                            ${s.isPaid ? 'Enroll Now ('+s.price+')' : 'Start Free Learning'}
+                        </a>
+                    </div>
+                </div>`;
             });
         }
-
-        // --- MODAL SYSTEM LOGIC ---
-        const modalData = {
-            'about-me': `
-                <h2 class="text-3xl font-black mb-4">About Vijay Saharan</h2>
-                <p class="mb-4">Hello! I am Vijay Saharan, a Computer Science student and digital entrepreneur. I have built over 12 platforms including Saharan Academy and PC CodeLite Hub.</p>
-                <p class="mb-4">My mission is to simplify technology for everyone. Whether you are a Class 10 student looking for Science notes or a developer learning Python, I am here to help you grow.</p>
-                <img src="https://via.placeholder.com/600x300" class="rounded-xl mb-4" />
-            `,
-            'contact': `
-                <h2 class="text-3xl font-black mb-4">Contact Me</h2>
-                <p class="mb-6 text-gray-500">I am always open to discussions about tech, education, and collaborations.</p>
-                <div class="space-y-4">
-                    <a href="https://wa.me/${myWhatsApp}" class="block p-4 bg-green-50 rounded-xl text-green-700 font-bold"><i class="fab fa-whatsapp mr-2"></i> WhatsApp Me Directly</a>
-                    <a href="mailto:your-email@example.com" class="block p-4 bg-blue-50 rounded-xl text-blue-700 font-bold"><i class="fas fa-envelope mr-2"></i> Email: support@vijaysaharan.com</a>
-                </div>
-            `,
-            'privacy': `
-                <h2 class="text-2xl font-bold mb-4">Privacy Policy</h2>
-                <p class="text-sm text-gray-600 mb-4 font-medium leading-relaxed">Your privacy is important to us. It is Vijay Saharan HQ's policy to respect your privacy regarding any information we may collect from you across our website. We only ask for personal information (like your phone number via WhatsApp) when we truly need it to provide a service to you.</p>
-                <ul class="list-disc pl-5 text-sm text-gray-500 space-y-2">
-                    <li>We don’t share any personally identifying information publicly.</li>
-                    <li>We only retain collected information for as long as necessary.</li>
-                    <li>You are free to refuse our request for personal information.</li>
-                </ul>
-            `,
-            'terms': `
-                <h2 class="text-2xl font-bold mb-4">Terms of Use</h2>
-                <p class="text-sm text-gray-600 mb-4 leading-relaxed">By accessing the website at Vijay Saharan HQ, you are agreeing to be bound by these terms of service and all applicable laws and regulations.</p>
-                <p class="text-sm text-gray-600 mb-4 font-bold uppercase">1. Use License</p>
-                <p class="text-sm text-gray-500 mb-4">Permission is granted to temporarily download one copy of the materials (notes or software) on Vijay Saharan HQ's website for personal, non-commercial transitory viewing only.</p>
-            `,
-            'refund': `
-                <h2 class="text-2xl font-bold mb-4">Refund Policy</h2>
-                <p class="text-sm text-gray-600 mb-4 leading-relaxed font-medium">At Vijay Saharan HQ, we strive to provide the highest quality digital products (Notes & Courses). Because our products are digital and delivered instantly, we generally do not offer refunds once access has been granted.</p>
-                <p class="text-sm text-gray-600 mb-4 font-bold">Exception Cases:</p>
-                <p class="text-sm text-gray-500 mb-4">If you were charged twice for the same product, please contact us on WhatsApp with proof of payment, and we will process a refund for the duplicate transaction immediately.</p>
-            `
-        };
-
-        function openModal(type) {
-            document.getElementById('modalBody').innerHTML = modalData[type];
-            document.getElementById('modalContainer').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Stop scrolling
-        }
-
-        function closeModal() {
-            document.getElementById('modalContainer').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Resume scrolling
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('modalContainer')) {
-                closeModal();
-            }
-        }
-
         init();
     </script>
 </body>

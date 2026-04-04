@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Vault | Vijay Saharan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #050505; color: #00ff41; font-family: 'Courier New', Courier, monospace; overflow: hidden; }
+        .matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.1; pointer-events: none; }
+        .vault-card { background: rgba(10, 10, 10, 0.9); border: 1px solid #00ff41; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2); }
+        .access-granted { color: #00ff41; text-shadow: 0 0 10px #00ff41; }
+        input { background: transparent; border-bottom: 2px solid #00ff41; text-align: center; color: #00ff41; font-size: 2rem; outline: none; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <div id="authBox" class="text-center z-50 p-10 vault-card rounded-xl">
+        <i class="fas fa-user-secret text-5xl mb-6"></i>
+        <h2 class="text-xl mb-6 tracking-[0.3em] uppercase">Enter Access Key</h2>
+        <input type="password" id="pinInput" maxlength="4" placeholder="****" autocomplete="off">
+        <div class="mt-8">
+            <button onclick="checkAccess()" class="border border-[#00ff41] px-8 py-2 hover:bg-[#00ff41] hover:text-black transition-all uppercase font-bold">Verify</button>
+        </div>
+        <p id="errorMsg" class="text-red-500 mt-4 text-xs hidden uppercase">Access Denied: Invalid Credentials</p>
+    </div>
+
+    <main id="vaultContent" class="hidden w-full max-w-4xl px-6 py-12 z-10">
+        <div class="flex justify-between items-center mb-10">
+            <h1 class="text-3xl font-bold access-granted">TERMINAL_VAULT_V1</h1>
+            <button onclick="location.reload()" class="text-xs border border-[#00ff41] px-4 py-1">LOCK_VAULT</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="vault-card p-6 rounded-lg">
+                <h3 class="text-white font-bold border-b border-[#00ff41] pb-2 mb-4">BRAND_STRATEGY_LINKS</h3>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="https://analytics.google.com" target="_blank" class="hover:underline">>> Google Analytics Dashboard</a></li>
+                    <li><a href="https://search.google.com/search-console" target="_blank" class="hover:underline">>> Search Console (SEO)</a></li>
+                    <li><a href="https://adsense.google.com" target="_blank" class="hover:underline">>> AdSense Revenue (Future)</a></li>
+                </ul>
+            </div>
+
+            <div class="vault-card p-6 rounded-lg">
+                <h3 class="text-white font-bold border-b border-[#00ff41] pb-2 mb-4">DEV_RESOURCES</h3>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="https://github.com/pccodelitehub" target="_blank" class="hover:underline">>> GitHub Repositories</a></li>
+                    <li><a href="https://firebase.google.com" target="_blank" class="hover:underline">>> Firebase Console</a></li>
+                    <li><a href="https://dashboard.stripe.com" target="_blank" class="hover:underline">>> Payment Gateway</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="vault-card p-6 rounded-lg mt-6">
+            <h3 class="text-white font-bold border-b border-[#00ff41] pb-2 mb-4">ENCRYPTED_MEMO</h3>
+            <p class="text-xs leading-relaxed opacity-80">
+                "System Note: As of April 2026, Vijay Saharan HQ is scaling to a multi-platform education hub. Keep the code clean. Keep the vision sharp."
+            </p>
+        </div>
+    </main>
+
+    <script>
+        // 1. Set your Secret PIN here
+        const MASTER_PIN = "1234"; // You can change this to any 4 digits
+
+        function checkAccess() {
+            const input = document.getElementById('pinInput').value;
+            const authBox = document.getElementById('authBox');
+            const content = document.getElementById('vaultContent');
+            const error = document.getElementById('errorMsg');
+
+            if (input === MASTER_PIN) {
+                authBox.classList.add('hidden');
+                content.classList.remove('hidden');
+            } else {
+                error.classList.remove('hidden');
+                document.getElementById('pinInput').value = "";
+                // Kick them to home if they fail 3 times (Advanced move)
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+            }
+        }
+
+        // Allow 'Enter' key to trigger verification
+        document.getElementById("pinInput").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                checkAccess();
+            }
+        });
+    </script>
+</body>
+</html>

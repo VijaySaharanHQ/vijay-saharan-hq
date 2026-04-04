@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control | Vijay Saharan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;800&display=swap" rel="stylesheet">
+    <style>
+        body { background: #020617; color: white; font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        input:focus { outline: none; border-color: #7c3aed; }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <div class="max-w-4xl mx-auto">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h1 class="text-4xl font-black tracking-tighter">VIJAY'S <span class="text-purple-500">VISION</span></h1>
+                <p class="text-gray-500 text-sm uppercase tracking-widest mt-2">Personal Growth Dashboard</p>
+            </div>
+            <div class="text-right">
+                <div id="clock" class="text-3xl font-bold font-mono">00:00:00</div>
+                <div id="date" class="text-xs text-gray-500 uppercase font-bold tracking-tighter">Loading Date...</div>
+            </div>
+        </div>
+
+        <div class="glass p-8 rounded-[32px] mb-8">
+            <h3 class="text-xs font-black uppercase tracking-[0.3em] mb-6 text-purple-400">Add New Milestone</h3>
+            <div class="flex gap-4">
+                <input type="text" id="goalInput" placeholder="What's the next big move?" 
+                       class="flex-grow bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white">
+                <button onclick="addGoal()" class="bg-purple-600 hover:bg-purple-500 px-8 rounded-2xl font-bold transition-all">ADD</button>
+            </div>
+        </div>
+
+        <div id="goalList" class="space-y-4">
+            </div>
+    </div>
+
+    <script>
+        // 1. Digital Clock Logic
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString();
+            document.getElementById('date').innerText = now.toDateString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // 2. LocalStorage Goal Logic
+        let goals = JSON.parse(localStorage.getItem('vijayGoals')) || [];
+
+        function renderGoals() {
+            const list = document.getElementById('goalList');
+            list.innerHTML = "";
+            goals.forEach((goal, index) => {
+                list.innerHTML += `
+                    <div class="glass p-6 rounded-2xl flex justify-between items-center animate-fade-in">
+                        <span class="font-bold text-gray-200">${goal}</span>
+                        <button onclick="removeGoal(${index})" class="text-gray-600 hover:text-red-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        function addGoal() {
+            const input = document.getElementById('goalInput');
+            if (input.value.trim() !== "") {
+                goals.push(input.value);
+                localStorage.setItem('vijayGoals', JSON.stringify(goals));
+                input.value = "";
+                renderGoals();
+            }
+        }
+
+        function removeGoal(index) {
+            goals.splice(index, 1);
+            localStorage.setItem('vijayGoals', JSON.stringify(goals));
+            renderGoals();
+        }
+
+        renderGoals();
+    </script>
+</body>
+</html>

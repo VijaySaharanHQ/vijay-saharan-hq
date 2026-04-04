@@ -3,173 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Universe | Vijay Saharan</title>
+    <title>Happy Birthday! | Vijay Saharan</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/dist/confetti.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;800&display=swap" rel="stylesheet">
     
     <style>
-        :root { --primary: #ff3366; --secondary: #9900ff; }
-        body { background: #050505; color: white; overflow: hidden; font-family: 'Montserrat', sans-serif; }
-        
-        /* Moving Star Background */
-        .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%); }
-        
-        /* Neon Glow Card */
-        .neon-card { 
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 51, 102, 0.3);
-            box-shadow: 0 0 40px rgba(255, 51, 102, 0.2);
-            position: relative;
-            z-index: 10;
+        body { background: #050505; color: white; font-family: 'Plus Jakarta Sans', sans-serif; overflow: hidden; }
+        .glass-container {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-
-        .neon-text {
-            text-shadow: 0 0 10px rgba(255, 51, 102, 0.8), 0 0 20px rgba(255, 51, 102, 0.4);
-            background: linear-gradient(to right, #ff3366, #ff80ab);
+        .wish-text { font-family: 'Dancing Script', cursive; }
+        .gradient-text {
+            background: linear-gradient(to right, #ff3366, #ff80ab, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        .floating-heart {
-            position: absolute;
-            pointer-events: none;
-            animation: moveUp 4s ease-in infinite;
-            opacity: 0;
-            z-index: 5;
+        .floating { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
-
-        @keyframes moveUp {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-        }
-
-        /* Countdown Style */
-        .time-box { background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 12px; min-width: 70px; border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen">
 
-    <div class="stars-container" id="stars"></div>
-
-    <div id="entrance" class="text-center z-50">
-        <div class="mb-6 inline-block p-1 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 animate-bounce">
-            <div class="bg-black rounded-full p-6 text-4xl">👑</div>
-        </div>
-        <h2 class="text-xs tracking-[0.8em] font-light mb-8 text-pink-200">AUTHENTICATING... ACCESSING VIJAY'S HEART</h2>
-        <button onclick="launchGalaxy()" class="px-10 py-4 rounded-full border-2 border-pink-500 text-pink-500 font-black tracking-widest hover:bg-pink-500 hover:text-white transition-all duration-500 transform hover:scale-110 shadow-[0_0_20px_rgba(255,51,102,0.4)]">
-            OPEN HER GIFT
+    <div id="setup" class="text-center z-20">
+        <div class="text-6xl mb-6 floating">🎁</div>
+        <button onclick="revealBirthday()" class="px-10 py-4 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black tracking-widest uppercase text-sm hover:scale-110 transition-transform shadow-lg shadow-pink-500/20">
+            Open Your Birthday Surprise
         </button>
     </div>
 
-    <div id="main" class="hidden w-full max-w-2xl px-6">
-        <div class="neon-card p-8 md:p-12 rounded-[40px] text-center border-t-4 border-pink-500">
-            <h3 class="text-xs font-bold tracking-[0.5em] text-pink-400 mb-6 uppercase">To My Most Special Person</h3>
+    <div id="mainWish" class="hidden text-center z-10 w-full max-w-xl px-6">
+        <div class="glass-container p-10 md:p-16 rounded-[40px] relative">
             
-            <h1 class="text-5xl md:text-7xl font-black mb-2 neon-text">HAPPY</h1>
-            <h1 class="text-5xl md:text-7xl font-black mb-8 neon-text">BIRTHDAY</h1>
+            <h2 class="text-xs font-bold tracking-[0.4em] text-pink-500 mb-6 uppercase">Special Delivery for You</h2>
+            
+            <h1 class="text-6xl md:text-8xl font-black gradient-text mb-2">Happy</h1>
+            <h1 class="text-6xl md:text-8xl font-black gradient-text mb-10">Birthday</h1>
 
-            <p class="text-3xl text-white mb-8 italic" style="font-family: 'Dancing Script', cursive;">
-                "You are the star that makes my sky bright."
+            <p class="wish-text text-4xl text-white mb-8">
+                "May your day be as beautiful and amazing as you are!"
             </p>
 
-            <div class="flex justify-center gap-3 mb-10">
-                <div class="time-box">
-                    <div class="text-xl font-bold" id="days">00</div>
-                    <div class="text-[8px] uppercase text-gray-400">Days</div>
-                </div>
-                <div class="time-box">
-                    <div class="text-xl font-bold" id="hours">00</div>
-                    <div class="text-[8px] uppercase text-gray-400">Hrs</div>
-                </div>
-                <div class="time-box">
-                    <div class="text-xl font-bold" id="minutes">00</div>
-                    <div class="text-[8px] uppercase text-gray-400">Min</div>
-                </div>
-                <div class="time-box">
-                    <div class="text-xl font-bold" id="seconds">00</div>
-                    <div class="text-[8px] uppercase text-gray-400">Sec</div>
-                </div>
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/10 italic text-gray-400 text-sm">
+                "I wanted to build something unique to celebrate you. I hope this small piece of code brings a big smile to your face today."
             </div>
 
-            <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
-                <p class="text-sm text-gray-300 leading-relaxed italic">
-                    "Since the day you entered my life, every moment has been a celebration. I didn't want to just give you a gift; I wanted to build you a world where you are the queen. I love you to the moon and back."
-                </p>
-            </div>
-            
-            <div class="mt-8 text-pink-500 font-bold tracking-widest text-xs uppercase">
-                Forever Yours &bull; Vijay Saharan
-            </div>
+            <div class="mt-10 text-4xl">🎂 ✨ 🎈</div>
         </div>
     </div>
 
+    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-pink-600/10 blur-[120px] rounded-full"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-600/10 blur-[120px] rounded-full"></div>
+
     <script>
-        // Set the date you first met or started loving her
-        const loveStartDate = new Date("2024-01-01T00:00:00"); 
+        function revealBirthday() {
+            // Hide intro, show wish
+            document.getElementById('setup').classList.add('hidden');
+            document.getElementById('mainWish').classList.remove('hidden');
 
-        function updateTimer() {
-            const now = new Date();
-            const diff = now - loveStartDate;
-
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const m = Math.floor((diff / (1000 * 60)) % 60);
-            const s = Math.floor((diff / 1000) % 60);
-
-            document.getElementById('days').innerText = d;
-            document.getElementById('hours').innerText = h;
-            document.getElementById('minutes').innerText = m;
-            document.getElementById('seconds').innerText = s;
-        }
-
-        function createStar() {
-            const star = document.createElement('div');
-            star.style.position = 'absolute';
-            star.style.width = Math.random() * 3 + 'px';
-            star.style.height = star.style.width;
-            star.style.background = 'white';
-            star.style.top = Math.random() * 100 + 'vh';
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.opacity = Math.random();
-            document.getElementById('stars').appendChild(star);
-        }
-
-        for(let i=0; i<150; i++) createStar();
-
-        function launchGalaxy() {
-            document.getElementById('entrance').classList.add('hidden');
-            document.getElementById('main').classList.remove('hidden');
-            
-            setInterval(updateTimer, 1000);
-            setInterval(createHeart, 400);
-
-            // Explosive Confetti
-            var duration = 15 * 1000;
+            // Fire Premium Confetti Cannon
+            var duration = 10 * 1000;
             var animationEnd = Date.now() + duration;
             var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
 
             var interval = setInterval(function() {
                 var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) return clearInterval(interval);
-                var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
-        }
 
-        function createHeart() {
-            const h = document.createElement('div');
-            h.innerHTML = '❤️';
-            h.className = 'floating-heart';
-            h.style.left = Math.random() * 100 + 'vw';
-            h.style.fontSize = Math.random() * 30 + 10 + 'px';
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 4000);
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                
+                // Fire from two sides
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } 
+                }));
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } 
+                }));
+            }, 250);
         }
     </script>
 </body>

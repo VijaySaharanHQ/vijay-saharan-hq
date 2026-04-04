@@ -3,63 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Surprise | Vijay Saharan</title>
+    <title>For You | Vijay Saharan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;800&display=swap" rel="stylesheet">
     
     <style>
-        body { background: #0f172a; overflow: hidden; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .wish-font { font-family: 'Dancing Script', cursive; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .animate-float { animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        body { background: #000; overflow: hidden; font-family: 'Inter', sans-serif; }
+        .pink-gradient { background: linear-gradient(45deg, #ff0055, #7000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        .heart { position: absolute; color: #ff0055; animation: fall linear infinite; pointer-events: none; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+        .typewriter { overflow: hidden; border-right: .15em solid #ff0055; white-space: nowrap; margin: 0 auto; letter-spacing: .15em; animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite; }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #ff0055; } }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
+<body class="flex items-center justify-center min-h-screen text-white">
 
-    <div id="setup" class="text-center z-10">
-        <h2 class="text-white text-xl mb-6 opacity-50 uppercase tracking-widest">A message from Vijay</h2>
-        <button onclick="startSurprise()" class="bg-purple-600 hover:bg-purple-500 text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg shadow-purple-500/30 transition-all transform hover:scale-110">
-            Click to Open Your Surprise 🎁
+    <div id="lockScreen" class="text-center z-50">
+        <div class="mb-8 animate-pulse text-6xl">❤️</div>
+        <h2 class="text-sm uppercase tracking-[0.5em] mb-6 opacity-60">Security Encrypted for Her Only</h2>
+        <button onclick="unlockLove()" class="px-12 py-5 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all duration-500 font-bold tracking-widest uppercase text-xs">
+            Unlock My Heart
         </button>
     </div>
 
-    <div id="mainContent" class="hidden text-center z-10 max-w-lg px-6">
-        <div class="glass p-10 rounded-[40px] animate-float">
-            <h1 class="wish-font text-6xl md:text-7xl text-purple-400 mb-6">Happy Birthday!</h1>
-            <p class="text-gray-300 text-lg leading-relaxed mb-8">
-                "Another year older, another year wiser, and still the most amazing person I know. I coded this little space just for you."
-            </p>
-            <div class="text-5xl">🎂 ✨ 🎈</div>
+    <div id="mainStage" class="hidden text-center z-10 w-full max-w-2xl px-6">
+        <div class="glass-card p-12 rounded-[50px] relative overflow-hidden">
+            <h1 class="text-6xl md:text-8xl font-bold pink-gradient mb-4">Happy</h1>
+            <h1 class="text-6xl md:text-8xl font-bold pink-gradient mb-8">Birthday!</h1>
+            
+            <div class="wish-font text-4xl text-white mb-10 leading-relaxed italic" style="font-family: 'Dancing Script', cursive;">
+                "I love you more than words can express..."
+            </div>
+
+            <div class="space-y-4 text-gray-400 text-sm font-medium tracking-wide mb-8">
+                <p class="typewriter">To the girl who makes my world perfect.</p>
+                <p>I didn't just build a website... I built a galaxy for you.</p>
+            </div>
+
+            <div class="pt-6 border-t border-white/10 flex justify-center gap-8">
+                <div class="text-center">
+                    <span class="block text-2xl font-bold">Forever</span>
+                    <span class="text-[10px] uppercase tracking-widest text-purple-400">Duration</span>
+                </div>
+                <div class="text-center">
+                    <span class="block text-2xl font-bold text-pink-500">∞</span>
+                    <span class="text-[10px] uppercase tracking-widest text-purple-400">Love Limit</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-10 left-10 w-32 h-32 bg-purple-500/20 blur-[100px] rounded-full"></div>
-        <div class="absolute bottom-10 right-10 w-64 h-64 bg-blue-500/10 blur-[120px] rounded-full"></div>
-    </div>
-
     <script>
-        function startSurprise() {
-            // 1. Hide Button, Show Message
-            document.getElementById('setup').classList.add('hidden');
-            document.getElementById('mainContent').classList.remove('hidden');
+        function unlockLove() {
+            document.getElementById('lockScreen').style.display = 'none';
+            document.getElementById('mainStage').classList.remove('hidden');
+            
+            // 1. Start Heart Rain
+            setInterval(createHeart, 300);
+            
+            // 2. Explode Premium Confetti
+            var end = Date.now() + (15 * 1000);
+            var colors = ['#ff0055', '#ffffff', '#7000ff'];
 
-            // 2. Fire Confetti
-            var duration = 5 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
 
-            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
 
-            var interval = setInterval(function() {
-                var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) { return clearInterval(interval); }
-                var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
         }
     </script>
 </body>

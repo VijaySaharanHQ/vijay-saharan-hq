@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journey | Vijay Saharan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;800&display=swap" rel="stylesheet">
+    <style>
+        body { background: #020617; color: white; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        
+        /* The Vertical Line */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: rgba(124, 58, 237, 0.1);
+            z-index: 1;
+        }
+
+        /* The Animated Progress Line */
+        #progress-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 0%;
+            background: linear-gradient(to bottom, #7c3aed, #ec4899);
+            z-index: 2;
+            transition: height 0.1s linear;
+        }
+
+        .milestone { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+        .milestone.show { opacity: 1; transform: translateY(0); }
+
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="py-20">
+
+    <div class="max-w-4xl mx-auto text-center mb-24 px-6">
+        <h1 class="text-5xl font-black mb-4 tracking-tighter">THE <span class="text-purple-500">ROADMAP</span></h1>
+        <p class="text-gray-500 uppercase tracking-[0.3em] text-xs">My Life, My Code, My Legacy</p>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-6">
+        <div class="timeline-line"></div>
+        <div id="progress-line"></div>
+
+        <div class="space-y-32">
+            
+            <div class="milestone flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 text-right hidden md:block">
+                    <h3 class="text-2xl font-black text-purple-400">2024</h3>
+                    <p class="text-gray-500">The Beginning</p>
+                </div>
+                <div class="z-10 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center border-4 border-slate-900">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="glass p-6 rounded-3xl">
+                        <h4 class="font-bold text-xl mb-2">First Line of Code</h4>
+                        <p class="text-gray-400 text-sm">Started my journey into the digital world. Mastered the basics of HTML and CSS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 text-right order-3 md:order-1">
+                    <div class="glass p-6 rounded-3xl">
+                        <h4 class="font-bold text-xl mb-2">PC CodeLite Hub</h4>
+                        <p class="text-gray-400 text-sm">Launched my first platform to help students learn technology in a simple way.</p>
+                    </div>
+                </div>
+                <div class="z-10 w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center border-4 border-slate-900 order-2">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="md:w-1/2 md:pl-12 order-1 md:order-3 hidden md:block">
+                    <h3 class="text-2xl font-black text-pink-400">2025</h3>
+                    <p class="text-gray-500">Execution Phase</p>
+                </div>
+            </div>
+
+            <div class="milestone flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 text-right hidden md:block">
+                    <h3 class="text-2xl font-black text-blue-400">2026</h3>
+                    <p class="text-gray-500">Brand Expansion</p>
+                </div>
+                <div class="z-10 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center border-4 border-slate-900">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="glass p-6 rounded-3xl">
+                        <h4 class="font-bold text-xl mb-2">Vijay Saharan HQ</h4>
+                        <p class="text-gray-400 text-sm">Established my professional headquarters on GitHub and reached 100+ course milestones.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="py-40 text-center text-gray-700 uppercase tracking-widest text-xs">
+        To be continued...
+    </div>
+
+    <script>
+        // 1. Progress Line Animation
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-line").style.height = scrolled + "%";
+        };
+
+        // 2. Intersection Observer for Fade-In
+        const observerOptions = { threshold: 0.2 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.milestone').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

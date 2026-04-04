@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Vibes | Vijay Saharan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        body { background: #000; color: #fff; font-family: 'Orbitron', sans-serif; overflow: hidden; }
+        
+        /* Neon Visualizer Bars */
+        .visualizer { display: flex; align-items: flex-end; gap: 5px; height: 150px; }
+        .bar { width: 8px; background: #7c3aed; box-shadow: 0 0 15px #7c3aed; border-radius: 10px; animation: bounce 1s ease-in-out infinite; }
+        
+        /* Animated Heights for Bars */
+        .bar:nth-child(1) { animation-delay: 0.1s; height: 30%; }
+        .bar:nth-child(2) { animation-delay: 0.3s; height: 60%; }
+        .bar:nth-child(3) { animation-delay: 0.2s; height: 90%; }
+        .bar:nth-child(4) { animation-delay: 0.4s; height: 40%; }
+        .bar:nth-child(5) { animation-delay: 0.1s; height: 75%; }
+        .bar:nth-child(6) { animation-delay: 0.3s; height: 50%; }
+
+        @keyframes bounce {
+            0%, 100% { height: 30%; filter: hue-rotate(0deg); }
+            50% { height: 100%; filter: hue-rotate(90deg); }
+        }
+
+        .glass-player { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glow-text { text-shadow: 0 0 10px #7c3aed, 0 0 20px #7c3aed; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-6">
+
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/20 blur-[150px] rounded-full"></div>
+
+    <div class="z-10 text-center">
+        <h1 class="text-xs tracking-[1em] uppercase opacity-50 mb-12">System Audio Active</h1>
+        
+        <div class="visualizer mb-16 justify-center">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+
+        <div class="glass-player p-8 rounded-[40px] w-full max-w-md">
+            <h2 class="text-2xl font-black glow-text mb-2">LO-FI RADIO</h2>
+            <p class="text-[10px] text-purple-400 tracking-[0.3em] mb-8 uppercase">Vijay Saharan Study Stream</p>
+
+            <div class="hidden">
+                <iframe id="player" width="1" height="1" src="https://www.youtube.com/embed/jfKfPfyJRdk?enablejsapi=1&autoplay=0" frameborder="0"></iframe>
+            </div>
+
+            <div class="flex justify-center gap-12 items-center">
+                <button onclick="controlMusic('pause')" class="text-gray-400 hover:text-white transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M5.5 3.5A.5.5 0 0 1 6 4v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm5 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+                    </svg>
+                </button>
+                <button onclick="controlMusic('play')" class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center shadow-[0_0_30px_#7c3aed] hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" viewBox="0 0 16 16">
+                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                    </svg>
+                </button>
+                <button class="text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.612C4.713 3.31 4 3.655 4 4.308v7.384c0 .653.713.998 1.233.696L11.5 8.752V12a.5.5 0 0 0 1 0V4z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // YouTube API Control Logic
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player');
+        }
+
+        function controlMusic(action) {
+            if (action === 'play') {
+                player.playVideo();
+                // Speed up visualizer
+                document.querySelectorAll('.bar').forEach(bar => bar.style.animationDuration = '0.5s');
+            } else {
+                player.pauseVideo();
+                // Slow down visualizer
+                document.querySelectorAll('.bar').forEach(bar => bar.style.animationDuration = '2s');
+            }
+        }
+    </script>
+</body>
+</html>

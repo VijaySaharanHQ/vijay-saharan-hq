@@ -3,102 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You | Vijay Saharan</title>
+    <title>My Universe | Vijay Saharan</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;900&display=swap" rel="stylesheet">
     
     <style>
-        body { background: #000; overflow: hidden; font-family: 'Inter', sans-serif; }
-        .pink-gradient { background: linear-gradient(45deg, #ff0055, #7000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
-        .heart { position: absolute; color: #ff0055; animation: fall linear infinite; pointer-events: none; }
-        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
-        .typewriter { overflow: hidden; border-right: .15em solid #ff0055; white-space: nowrap; margin: 0 auto; letter-spacing: .15em; animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite; }
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #ff0055; } }
+        :root { --primary: #ff3366; --secondary: #9900ff; }
+        body { background: #050505; color: white; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+        
+        /* Moving Star Background */
+        .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%); }
+        
+        /* Neon Glow Card */
+        .neon-card { 
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            box-shadow: 0 0 40px rgba(255, 51, 102, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.8), 0 0 20px rgba(255, 51, 102, 0.4);
+            background: linear-gradient(to right, #ff3366, #ff80ab);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .floating-heart {
+            position: absolute;
+            pointer-events: none;
+            animation: moveUp 4s ease-in infinite;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        @keyframes moveUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Countdown Style */
+        .time-box { background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 12px; min-width: 70px; border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen text-white">
+<body class="flex items-center justify-center min-h-screen">
 
-    <div id="lockScreen" class="text-center z-50">
-        <div class="mb-8 animate-pulse text-6xl">❤️</div>
-        <h2 class="text-sm uppercase tracking-[0.5em] mb-6 opacity-60">Security Encrypted for Her Only</h2>
-        <button onclick="unlockLove()" class="px-12 py-5 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all duration-500 font-bold tracking-widest uppercase text-xs">
-            Unlock My Heart
+    <div class="stars-container" id="stars"></div>
+
+    <div id="entrance" class="text-center z-50">
+        <div class="mb-6 inline-block p-1 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 animate-bounce">
+            <div class="bg-black rounded-full p-6 text-4xl">👑</div>
+        </div>
+        <h2 class="text-xs tracking-[0.8em] font-light mb-8 text-pink-200">AUTHENTICATING... ACCESSING VIJAY'S HEART</h2>
+        <button onclick="launchGalaxy()" class="px-10 py-4 rounded-full border-2 border-pink-500 text-pink-500 font-black tracking-widest hover:bg-pink-500 hover:text-white transition-all duration-500 transform hover:scale-110 shadow-[0_0_20px_rgba(255,51,102,0.4)]">
+            OPEN HER GIFT
         </button>
     </div>
 
-    <div id="mainStage" class="hidden text-center z-10 w-full max-w-2xl px-6">
-        <div class="glass-card p-12 rounded-[50px] relative overflow-hidden">
-            <h1 class="text-6xl md:text-8xl font-bold pink-gradient mb-4">Happy</h1>
-            <h1 class="text-6xl md:text-8xl font-bold pink-gradient mb-8">Birthday!</h1>
+    <div id="main" class="hidden w-full max-w-2xl px-6">
+        <div class="neon-card p-8 md:p-12 rounded-[40px] text-center border-t-4 border-pink-500">
+            <h3 class="text-xs font-bold tracking-[0.5em] text-pink-400 mb-6 uppercase">To My Most Special Person</h3>
             
-            <div class="wish-font text-4xl text-white mb-10 leading-relaxed italic" style="font-family: 'Dancing Script', cursive;">
-                "I love you more than words can express..."
+            <h1 class="text-5xl md:text-7xl font-black mb-2 neon-text">HAPPY</h1>
+            <h1 class="text-5xl md:text-7xl font-black mb-8 neon-text">BIRTHDAY</h1>
+
+            <p class="text-3xl text-white mb-8 italic" style="font-family: 'Dancing Script', cursive;">
+                "You are the star that makes my sky bright."
+            </p>
+
+            <div class="flex justify-center gap-3 mb-10">
+                <div class="time-box">
+                    <div class="text-xl font-bold" id="days">00</div>
+                    <div class="text-[8px] uppercase text-gray-400">Days</div>
+                </div>
+                <div class="time-box">
+                    <div class="text-xl font-bold" id="hours">00</div>
+                    <div class="text-[8px] uppercase text-gray-400">Hrs</div>
+                </div>
+                <div class="time-box">
+                    <div class="text-xl font-bold" id="minutes">00</div>
+                    <div class="text-[8px] uppercase text-gray-400">Min</div>
+                </div>
+                <div class="time-box">
+                    <div class="text-xl font-bold" id="seconds">00</div>
+                    <div class="text-[8px] uppercase text-gray-400">Sec</div>
+                </div>
             </div>
 
-            <div class="space-y-4 text-gray-400 text-sm font-medium tracking-wide mb-8">
-                <p class="typewriter">To the girl who makes my world perfect.</p>
-                <p>I didn't just build a website... I built a galaxy for you.</p>
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                <p class="text-sm text-gray-300 leading-relaxed italic">
+                    "Since the day you entered my life, every moment has been a celebration. I didn't want to just give you a gift; I wanted to build you a world where you are the queen. I love you to the moon and back."
+                </p>
             </div>
-
-            <div class="pt-6 border-t border-white/10 flex justify-center gap-8">
-                <div class="text-center">
-                    <span class="block text-2xl font-bold">Forever</span>
-                    <span class="text-[10px] uppercase tracking-widest text-purple-400">Duration</span>
-                </div>
-                <div class="text-center">
-                    <span class="block text-2xl font-bold text-pink-500">∞</span>
-                    <span class="text-[10px] uppercase tracking-widest text-purple-400">Love Limit</span>
-                </div>
+            
+            <div class="mt-8 text-pink-500 font-bold tracking-widest text-xs uppercase">
+                Forever Yours &bull; Vijay Saharan
             </div>
         </div>
     </div>
 
     <script>
-        function unlockLove() {
-            document.getElementById('lockScreen').style.display = 'none';
-            document.getElementById('mainStage').classList.remove('hidden');
-            
-            // 1. Start Heart Rain
-            setInterval(createHeart, 300);
-            
-            // 2. Explode Premium Confetti
-            var end = Date.now() + (15 * 1000);
-            var colors = ['#ff0055', '#ffffff', '#7000ff'];
+        // Set the date you first met or started loving her
+        const loveStartDate = new Date("2024-01-01T00:00:00"); 
 
-            (function frame() {
-                confetti({
-                    particleCount: 3,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 },
-                    colors: colors
-                });
-                confetti({
-                    particleCount: 3,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 },
-                    colors: colors
-                });
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - loveStartDate;
 
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
-            }());
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = d;
+            document.getElementById('hours').innerText = h;
+            document.getElementById('minutes').innerText = m;
+            document.getElementById('seconds').innerText = s;
+        }
+
+        function createStar() {
+            const star = document.createElement('div');
+            star.style.position = 'absolute';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.background = 'white';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.opacity = Math.random();
+            document.getElementById('stars').appendChild(star);
+        }
+
+        for(let i=0; i<150; i++) createStar();
+
+        function launchGalaxy() {
+            document.getElementById('entrance').classList.add('hidden');
+            document.getElementById('main').classList.remove('hidden');
+            
+            setInterval(updateTimer, 1000);
+            setInterval(createHeart, 400);
+
+            // Explosive Confetti
+            var duration = 15 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
         }
 
         function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
+            const h = document.createElement('div');
+            h.innerHTML = '❤️';
+            h.className = 'floating-heart';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.fontSize = Math.random() * 30 + 10 + 'px';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 4000);
         }
     </script>
 </body>

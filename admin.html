@@ -3,64 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin CMS | Vijay Saharan</title>
+    <title>Vijay Saharan | Mega CMS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background: #020617; color: white; font-family: 'Inter', sans-serif; }
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .admin-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+        .course-card:hover { border-color: #6366f1; background: rgba(99, 102, 241, 0.05); }
+        .tab-active { border-bottom: 2px solid #6366f1; color: #6366f1; }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen pb-20">
 
-    <div id="authShield" class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center p-6">
-        <div class="glass p-10 rounded-[40px] w-full max-w-md text-center">
-            <h2 class="text-2xl font-black mb-8">System Login</h2>
+    <div id="authShield" class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center p-6 text-center">
+        <div class="glass p-10 rounded-[40px] w-full max-w-md">
+            <h2 class="text-2xl font-black mb-8">System Admin</h2>
             <input type="password" id="pinInput" placeholder="PIN" maxlength="4" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-center mb-4 text-xl tracking-[1em] outline-none">
-            <button onclick="verify()" class="w-full admin-gradient py-4 rounded-2xl font-bold uppercase">Enter CMS</button>
+            <button onclick="verify()" class="w-full admin-gradient py-4 rounded-2xl font-bold uppercase">Unlock 150 Courses</button>
         </div>
     </div>
 
     <div id="panel" class="hidden">
         <nav class="glass p-6 flex justify-between items-center sticky top-0 z-50">
-            <h1 class="font-black tracking-tighter text-xl">VIJAY <span class="text-indigo-500">CMS</span></h1>
+            <h1 class="font-black tracking-tighter text-xl">VIJAY <span class="text-indigo-500">MEGA CMS</span></h1>
             <div class="flex gap-4">
-                <button onclick="exportJSON()" class="bg-emerald-600 px-6 py-2 rounded-xl font-bold text-xs">EXPORT MASTER JSON</button>
-                <button onclick="location.reload()" class="bg-red-600 px-6 py-2 rounded-xl font-bold text-xs">LOGOUT</button>
+                <button onclick="exportJSON()" class="bg-emerald-600 px-6 py-2 rounded-xl font-bold text-[10px]">EXPORT 150 COURSES</button>
+                <button onclick="location.reload()" class="bg-red-600 px-6 py-2 rounded-xl font-bold text-[10px]">EXIT</button>
             </div>
         </nav>
 
-        <main class="max-w-6xl mx-auto p-6 md:p-12">
-            <div class="flex justify-between items-center mb-10">
-                <h2 class="text-3xl font-black">Live Course List</h2>
-                <button onclick="openModal()" class="admin-gradient px-6 py-3 rounded-xl font-bold text-xs">+ ADD COURSE</button>
+        <main class="max-w-7xl mx-auto p-6 md:p-12">
+            <div class="mb-12">
+                <h2 class="text-4xl font-black mb-2">Inventory Control</h2>
+                <p class="text-slate-500 text-sm">Managing ${courses.length} educational assets under the Vijay Saharan brand.</p>
             </div>
 
-            <div id="courseList" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex gap-8 border-b border-white/10 mb-10 overflow-x-auto pb-2 text-xs font-bold uppercase tracking-widest">
+                <button onclick="filterCat('All')" class="pb-2">All</button>
+                <button onclick="filterCat('Programming')" class="pb-2">Programming</button>
+                <button onclick="filterCat('Data Science')" class="pb-2">Data Science</button>
+                <button onclick="filterCat('Cybersecurity')" class="pb-2">Security</button>
+                <button onclick="filterCat('Game')" class="pb-2">Gaming</button>
+                <button onclick="filterCat('Design')" class="pb-2">Design</button>
+                <button onclick="filterCat('Business')" class="pb-2">Business</button>
+            </div>
+
+            <div id="courseList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 </div>
         </main>
     </div>
 
-    <div id="modal" class="fixed inset-0 bg-black/90 hidden z-[60] flex items-center justify-center p-6">
-        <div class="glass p-8 rounded-[40px] w-full max-w-lg">
-            <h3 id="modalTitle" class="text-xl font-bold mb-6">Course Details</h3>
-            <div class="space-y-4">
-                <input type="text" id="cTitle" placeholder="Course Title" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
-                <input type="text" id="cPrice" placeholder="Price (e.g. ₹499)" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
-                <input type="text" id="cLink" placeholder="Link to Chapters" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
-                <input type="text" id="cIcon" placeholder="FontAwesome Icon (e.g. fas fa-code)" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
-                <div class="flex gap-4 mt-6">
-                    <button onclick="closeModal()" class="flex-1 py-4 border border-white/10 rounded-xl">Cancel</button>
-                    <button onclick="saveCourse()" class="flex-1 admin-gradient py-4 rounded-xl font-bold">Save Changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        let courses = JSON.parse(localStorage.getItem('vijay_data')) || [];
-        let editingId = null;
+        // THE MEGA DATASET (Pre-loaded with your 150 courses)
+        const megaList = [
+            // Programming (1-40)
+            { title: "Python for Beginners", price: "₹499", cat: "Programming", icon: "fab fa-python" },
+            { title: "Advanced Python Programming", price: "₹799", cat: "Programming", icon: "fab fa-python" },
+            { title: "Java Programming Masterclass", price: "₹699", cat: "Programming", icon: "fab fa-java" },
+            { title: "C++ Complete Course", price: "₹599", cat: "Programming", icon: "fas fa-code" },
+            { title: "C Programming Basics", price: "₹399", cat: "Programming", icon: "fas fa-code" },
+            { title: "Data Structures in C++", price: "₹799", cat: "Programming", icon: "fas fa-project-diagram" },
+            { title: "JavaScript Essentials", price: "₹499", cat: "Programming", icon: "fab fa-js" },
+            { title: "Advanced JavaScript", price: "₹799", cat: "Programming", icon: "fab fa-js" },
+            { title: "Full Stack Web Development", price: "₹1499", cat: "Programming", icon: "fas fa-globe" },
+            { title: "MERN Stack Bootcamp", price: "₹1599", cat: "Programming", icon: "fas fa-layer-group" },
+            { title: "React JS Course", price: "₹899", cat: "Programming", icon: "fab fa-react" },
+            { title: "Angular Complete Guide", price: "₹999", cat: "Programming", icon: "fab fa-angular" },
+            { title: "Node.js Development", price: "₹899", cat: "Programming", icon: "fab fa-node-js" },
+            { title: "PHP for Beginners", price: "₹499", cat: "Programming", icon: "fab fa-php" },
+            { title: "Laravel Framework Course", price: "₹899", cat: "Programming", icon: "fab fa-laravel" },
+            { title: "Django Web Development", price: "₹999", cat: "Programming", icon: "fas fa-server" },
+            { title: "Flask Microservices", price: "₹799", cat: "Programming", icon: "fas fa-vial" },
+            { title: "REST API Development", price: "₹699", cat: "Programming", icon: "fas fa-cloud" },
+            { title: "GraphQL Basics", price: "₹699", cat: "Programming", icon: "fas fa-project-diagram" },
+            { title: "TypeScript Course", price: "₹599", cat: "Programming", icon: "fab fa-js-square" },
+            { title: "Go Programming", price: "₹799", cat: "Programming", icon: "fas fa-running" },
+            { title: "Rust Programming", price: "₹999", cat: "Programming", icon: "fas fa-cogs" },
+            { title: "Kotlin for Android", price: "₹899", cat: "Programming", icon: "fas fa-mobile-alt" },
+            { title: "Swift for iOS", price: "₹999", cat: "Programming", icon: "fab fa-apple" },
+            { title: "Android App Development", price: "₹1299", cat: "Programming", icon: "fab fa-android" },
+            { title: "iOS App Development", price: "₹1499", cat: "Programming", icon: "fab fa-app-store" },
+            { title: "Web Development Bootcamp", price: "₹1599", cat: "Programming", icon: "fas fa-laptop-code" },
+            { title: "Git & GitHub Mastery", price: "₹399", cat: "Programming", icon: "fab fa-github" },
+            { title: "DevOps Fundamentals", price: "₹999", cat: "Programming", icon: "fas fa-infinity" },
+            { title: "Docker & Kubernetes", price: "₹1299", cat: "Programming", icon: "fab fa-docker" },
+            { title: "CI/CD Pipelines", price: "₹899", cat: "Programming", icon: "fas fa-stream" },
+            { title: "Microservices Architecture", price: "₹1199", cat: "Programming", icon: "fas fa-cubes" },
+            { title: "System Design Basics", price: "₹999", cat: "Programming", icon: "fas fa-sitemap" },
+            { title: "Competitive Programming", price: "₹699", cat: "Programming", icon: "fas fa-trophy" },
+            { title: "Algorithms Masterclass", price: "₹999", cat: "Programming", icon: "fas fa-brain" },
+            { title: "Software Engineering Principles", price: "₹799", cat: "Programming", icon: "fas fa-pencil-ruler" },
+            { title: "OOP Concepts Deep Dive", price: "₹599", cat: "Programming", icon: "fas fa-cube" },
+            { title: "Clean Code Practices", price: "₹499", cat: "Programming", icon: "fas fa-broom" },
+            { title: "Design Patterns", price: "₹799", cat: "Programming", icon: "fas fa-th-large" },
+            { title: "Debugging Techniques", price: "₹399", cat: "Programming", icon: "fas fa-bug" },
+
+            // Data Science & AI (41-70)
+            { title: "Data Science Basics", price: "₹999", cat: "Data Science", icon: "fas fa-chart-pie" },
+            { title: "Machine Learning A-Z", price: "₹1499", cat: "Data Science", icon: "fas fa-robot" },
+            { title: "Deep Learning with TensorFlow", price: "₹1499", cat: "Data Science", icon: "fas fa-network-wired" },
+            { title: "AI for Beginners", price: "₹799", cat: "Data Science", icon: "fas fa-microchip" },
+            { title: "NLP Fundamentals", price: "₹999", cat: "Data Science", icon: "fas fa-language" },
+            { title: "Computer Vision", price: "₹1199", cat: "Data Science", icon: "fas fa-eye" },
+            { title: "Data Analysis with Python", price: "₹899", cat: "Data Science", icon: "fas fa-search-dollar" },
+            { title: "Pandas & NumPy", price: "₹699", cat: "Data Science", icon: "fas fa-table" },
+            { title: "Data Visualization", price: "₹699", cat: "Data Science", icon: "fas fa-chart-bar" },
+            { title: "SQL for Data Science", price: "₹599", cat: "Data Science", icon: "fas fa-database" },
+            { title: "Big Data Hadoop", price: "₹1199", cat: "Data Science", icon: "fas fa-elephant" },
+            { title: "Spark for Data Engineering", price: "₹1299", cat: "Data Science", icon: "fas fa-bolt" },
+            { title: "Power BI Course", price: "₹799", cat: "Data Science", icon: "fas fa-signal" },
+            { title: "Tableau Mastery", price: "₹899", cat: "Data Science", icon: "fas fa-columns" },
+            { title: "Excel for Data Analysis", price: "₹499", cat: "Data Science", icon: "fas fa-file-excel" },
+            { title: "Statistics for Data Science", price: "₹799", cat: "Data Science", icon: "fas fa-percentage" },
+            { title: "R Programming", price: "₹699", cat: "Data Science", icon: "fab fa-r-project" },
+            { title: "AI Chatbot Development", price: "₹999", cat: "Data Science", icon: "fas fa-comment-dots" },
+            { title: "Reinforcement Learning", price: "₹1499", cat: "Data Science", icon: "fas fa-gamepad" },
+            { title: "Generative AI Basics", price: "₹999", cat: "Data Science", icon: "fas fa-magic" },
+            { title: "Prompt Engineering", price: "₹599", cat: "Data Science", icon: "fas fa-terminal" },
+            { title: "AI Ethics", price: "₹399", cat: "Data Science", icon: "fas fa-balance-scale" },
+            { title: "Data Engineering", price: "₹1199", cat: "Data Science", icon: "fas fa-tools" },
+            { title: "Time Series Analysis", price: "₹999", cat: "Data Science", icon: "fas fa-history" },
+            { title: "Predictive Modeling", price: "₹999", cat: "Data Science", icon: "fas fa-crystal-ball" },
+            { title: "Business Analytics", price: "₹899", cat: "Data Science", icon: "fas fa-chart-line" },
+            { title: "Decision Trees & Random Forest", price: "₹799", cat: "Data Science", icon: "fas fa-tree" },
+            { title: "Neural Networks", price: "₹999", cat: "Data Science", icon: "fas fa-brain" },
+            { title: "MLOps Fundamentals", price: "₹1299", cat: "Data Science", icon: "fas fa-cogs" },
+            { title: "AI Project Deployment", price: "₹1199", cat: "Data Science", icon: "fas fa-upload" },
+
+            // Cybersecurity (71-90)
+            { title: "Cybersecurity Basics", price: "₹799", cat: "Cybersecurity", icon: "fas fa-shield-alt" },
+            { title: "Ethical Hacking", price: "₹1499", cat: "Cybersecurity", icon: "fas fa-user-secret" },
+            { title: "Network Security", price: "₹999", cat: "Cybersecurity", icon: "fas fa-network-wired" },
+            { title: "Penetration Testing", price: "₹1299", cat: "Cybersecurity", icon: "fas fa-skull-crossbones" },
+            { title: "Kali Linux Course", price: "₹899", cat: "Cybersecurity", icon: "fab fa-linux" },
+            { title: "Cryptography Basics", price: "₹699", cat: "Cybersecurity", icon: "fas fa-key" },
+            { title: "Web Security", price: "₹999", cat: "Cybersecurity", icon: "fas fa-lock" },
+            { title: "Bug Bounty Hunting", price: "₹1199", cat: "Cybersecurity", icon: "fas fa-bug" },
+            { title: "CEH Preparation", price: "₹1499", cat: "Cybersecurity", icon: "fas fa-certificate" },
+            { title: "Digital Forensics", price: "₹999", cat: "Cybersecurity", icon: "fas fa-microscope" },
+            { title: "Cloud Security", price: "₹1199", cat: "Cybersecurity", icon: "fas fa-cloud-lock" },
+            { title: "Firewall Management", price: "₹699", cat: "Cybersecurity", icon: "fas fa-border-all" },
+            { title: "VPN & Privacy", price: "₹499", cat: "Cybersecurity", icon: "fas fa-user-shield" },
+            { title: "SOC Analyst Training", price: "₹1299", cat: "Cybersecurity", icon: "fas fa-desktop" },
+            { title: "Malware Analysis", price: "₹1399", cat: "Cybersecurity", icon: "fas fa-biohazard" },
+            { title: "Security Operations", price: "₹999", cat: "Cybersecurity", icon: "fas fa-pills" },
+            { title: "Network Fundamentals", price: "₹699", cat: "Cybersecurity", icon: "fas fa-ethernet" },
+            { title: "CCNA Preparation", price: "₹1499", cat: "Cybersecurity", icon: "fas fa-graduation-cap" },
+            { title: "Advanced Networking", price: "₹1199", cat: "Cybersecurity", icon: "fas fa-project-diagram" },
+            { title: "Wireshark Analysis", price: "₹799", cat: "Cybersecurity", icon: "fas fa-search" },
+
+            // Game Development (91-105)
+            { title: "Game Development Basics", price: "₹799", cat: "Game", icon: "fas fa-gamepad" },
+            { title: "Unity Game Development", price: "₹1299", cat: "Game", icon: "fab fa-unity" },
+            { title: "Unreal Engine Course", price: "₹1499", cat: "Game", icon: "fas fa-dragon" },
+            { title: "2D Game Development", price: "₹899", cat: "Game", icon: "fas fa-square" },
+            { title: "3D Game Development", price: "₹1199", cat: "Game", icon: "fas fa-cube" },
+            { title: "Game Design Theory", price: "₹699", cat: "Game", icon: "fas fa-pen-nib" },
+            { title: "C# for Unity", price: "₹799", cat: "Game", icon: "fas fa-code" },
+            { title: "Blender for Game Assets", price: "₹999", cat: "Game", icon: "fas fa-palette" },
+            { title: "Mobile Game Development", price: "₹1099", cat: "Game", icon: "fas fa-mobile" },
+            { title: "AR/VR Development", price: "₹1499", cat: "Game", icon: "fas fa-vr-cardboard" },
+            { title: "Game Physics", price: "₹899", cat: "Game", icon: "fas fa-atom" },
+            { title: "Multiplayer Game Dev", price: "₹1399", cat: "Game", icon: "fas fa-users" },
+            { title: "Indie Game Launch Guide", price: "₹699", cat: "Game", icon: "fas fa-rocket" },
+            { title: "Game UI/UX Design", price: "₹799", cat: "Game", icon: "fas fa-window-maximize" },
+            { title: "Gaming Monetization", price: "₹599", cat: "Game", icon: "fas fa-dollar-sign" },
+
+            // Design (106-120)
+            { title: "Graphic Design Basics", price: "₹499", cat: "Design", icon: "fas fa-draw-polygon" },
+            { title: "Photoshop Mastery", price: "₹799", cat: "Design", icon: "fas fa-image" },
+            { title: "Illustrator Course", price: "₹799", cat: "Design", icon: "fas fa-bezier-curve" },
+            { title: "Canva Design Course", price: "₹399", cat: "Design", icon: "fas fa-paint-brush" },
+            { title: "UI/UX Design", price: "₹999", cat: "Design", icon: "fas fa-vector-square" },
+            { title: "Figma Complete Guide", price: "₹699", cat: "Design", icon: "fab fa-figma" },
+            { title: "Web Design Fundamentals", price: "₹599", cat: "Design", icon: "fas fa-window-restore" },
+            { title: "Logo Design Masterclass", price: "₹499", cat: "Design", icon: "fas fa-stamp" },
+            { title: "Motion Graphics", price: "₹999", cat: "Design", icon: "fas fa-film" },
+            { title: "Video Editing", price: "₹799", cat: "Design", icon: "fas fa-video" },
+            { title: "Premiere Pro Course", price: "₹899", cat: "Design", icon: "fas fa-play" },
+            { title: "After Effects", price: "₹999", cat: "Design", icon: "fas fa-magic" },
+            { title: "3D Animation", price: "₹1299", cat: "Design", icon: "fas fa-walking" },
+            { title: "Branding & Identity", price: "₹699", cat: "Design", icon: "fas fa-briefcase" },
+            { title: "Digital Illustration", price: "₹799", cat: "Design", icon: "fas fa-pen-alt" },
+
+            // Business & Marketing (121-150)
+            { title: "Digital Marketing", price: "₹999", cat: "Business", icon: "fas fa-bullhorn" },
+            { title: "SEO Mastery", price: "₹799", cat: "Business", icon: "fas fa-search-plus" },
+            { title: "Social Media Marketing", price: "₹699", cat: "Business", icon: "fab fa-instagram" },
+            { title: "Content Writing", price: "₹499", cat: "Business", icon: "fas fa-keyboard" },
+            { title: "Blogging Masterclass", price: "₹599", cat: "Business", icon: "fas fa-blog" },
+            { title: "Affiliate Marketing", price: "₹699", cat: "Business", icon: "fas fa-link" },
+            { title: "Email Marketing", price: "₹499", cat: "Business", icon: "fas fa-envelope-open-text" },
+            { title: "YouTube Growth Course", price: "₹799", cat: "Business", icon: "fab fa-youtube" },
+            { title: "Personal Branding", price: "₹699", cat: "Business", icon: "fas fa-user-circle" },
+            { title: "Freelancing Guide", price: "₹499", cat: "Business", icon: "fas fa-laptop-house" },
+            { title: "Entrepreneurship Basics", price: "₹799", cat: "Business", icon: "fas fa-lightbulb" },
+            { title: "Startup Launch Course", price: "₹999", cat: "Business", icon: "fas fa-rocket" },
+            { title: "E-commerce Business", price: "₹899", cat: "Business", icon: "fas fa-shopping-cart" },
+            { title: "Dropshipping Course", price: "₹799", cat: "Business", icon: "fas fa-box-open" },
+            { title: "Shopify Development", price: "₹999", cat: "Business", icon: "fab fa-shopify" },
+            { title: "Amazon Selling", price: "₹799", cat: "Business", icon: "fab fa-amazon" },
+            { title: "Stock Market Basics", price: "₹699", cat: "Business", icon: "fas fa-chart-line" },
+            { title: "Cryptocurrency Basics", price: "₹799", cat: "Business", icon: "fab fa-bitcoin" },
+            { title: "Financial Literacy", price: "₹499", cat: "Business", icon: "fas fa-wallet" },
+            { title: "Time Management", price: "₹399", cat: "Business", icon: "fas fa-hourglass-half" },
+            { title: "Productivity Mastery", price: "₹499", cat: "Business", icon: "fas fa-tachometer-alt" },
+            { title: "Communication Skills", price: "₹399", cat: "Business", icon: "fas fa-comments" },
+            { title: "Public Speaking", price: "₹499", cat: "Business", icon: "fas fa-microphone" },
+            { title: "Leadership Skills", price: "₹699", cat: "Business", icon: "fas fa-users-cog" },
+            { title: "Negotiation Skills", price: "₹599", cat: "Business", icon: "fas fa-handshake" },
+            { title: "Career Development", price: "₹499", cat: "Business", icon: "fas fa-user-graduate" },
+            { title: "Resume Building", price: "₹299", cat: "Business", icon: "fas fa-file-pdf" },
+            { title: "Interview Preparation", price: "₹399", cat: "Business", icon: "fas fa-user-tie" },
+            { title: "Remote Work Skills", price: "₹499", cat: "Business", icon: "fas fa-home" },
+            { title: "Office Tools (MS Office)", price: "₹399", cat: "Business", icon: "fas fa-file-word" }
+        ];
+
+        let courses = megaList;
 
         function verify() {
             if(document.getElementById('pinInput').value === "1234") {
@@ -73,74 +233,33 @@
         function render() {
             const list = document.getElementById('courseList');
             list.innerHTML = courses.map(c => `
-                <div class="glass p-6 rounded-3xl flex justify-between items-center">
-                    <div>
-                        <h4 class="font-bold">${c.title}</h4>
-                        <p class="text-emerald-500 text-sm font-bold">${c.price}</p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="edit(${c.id})" class="p-3 bg-white/5 rounded-xl hover:bg-indigo-600"><i class="fas fa-edit"></i></button>
-                        <button onclick="del(${c.id})" class="p-3 bg-white/5 rounded-xl hover:bg-red-600"><i class="fas fa-trash"></i></button>
+                <div class="glass p-6 rounded-3xl course-card transition-all">
+                    <div class="flex items-center gap-4">
+                        <div class="p-4 bg-indigo-500/10 text-indigo-500 rounded-2xl"><i class="${c.icon}"></i></div>
+                        <div>
+                            <h4 class="font-bold text-sm leading-tight">${c.title}</h4>
+                            <p class="text-emerald-500 font-bold text-xs mt-1">${c.price}</p>
+                            <p class="text-[8px] text-slate-500 uppercase tracking-widest mt-1">${c.cat}</p>
+                        </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        function openModal() {
-            editingId = null;
-            document.getElementById('cTitle').value = "";
-            document.getElementById('cPrice').value = "";
-            document.getElementById('cLink').value = "";
-            document.getElementById('cIcon').value = "fas fa-graduation-cap";
-            document.getElementById('modal').classList.remove('hidden');
-        }
-
-        function edit(id) {
-            editingId = id;
-            const c = courses.find(x => x.id === id);
-            document.getElementById('cTitle').value = c.title;
-            document.getElementById('cPrice').value = c.price;
-            document.getElementById('cLink').value = c.link;
-            document.getElementById('cIcon').value = c.icon;
-            document.getElementById('modal').classList.remove('hidden');
-        }
-
-        function saveCourse() {
-            const data = {
-                id: editingId || Date.now(),
-                title: document.getElementById('cTitle').value,
-                price: document.getElementById('cPrice').value,
-                link: document.getElementById('cLink').value,
-                icon: document.getElementById('cIcon').value
-            };
-            if(editingId) {
-                courses = courses.map(x => x.id === editingId ? data : x);
-            } else {
-                courses.push(data);
-            }
-            localStorage.setItem('vijay_data', JSON.stringify(courses));
-            closeModal();
+        function filterCat(cat) {
+            if(cat === 'All') courses = megaList;
+            else courses = megaList.filter(c => c.cat === cat);
             render();
         }
 
-        function del(id) {
-            if(confirm("Remove this course?")) {
-                courses = courses.filter(x => x.id !== id);
-                localStorage.setItem('vijay_data', JSON.stringify(courses));
-                render();
-            }
-        }
-
-        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
-
         function exportJSON() {
-            const blob = new Blob([JSON.stringify(courses, null, 4)], {type : 'application/json'});
+            const blob = new Blob([JSON.stringify(megaList, null, 4)], {type : 'application/json'});
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
             a.download = 'courses.json';
             a.click();
-            alert("Upload this file to GitHub now!");
+            alert("MASTER FILE GENERATED: Upload 'courses.json' to GitHub to activate all 150 courses.");
         }
     </script>
 </body>

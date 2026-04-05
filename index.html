@@ -3,91 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vijay Saharan | Master Coding & Tech</title>
+    <title>Vijay Saharan | Official HQ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .course-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; transition: 0.3s; }
-        .course-card:hover { transform: translateY(-5px); border-color: #7c3aed; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1); }
+        body { background: #020617; color: white; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
 <body>
-    <nav class="bg-white border-b sticky top-0 z-50 p-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-black text-purple-600 tracking-tighter">VIJAY SAHARAN</a>
-            <div class="hidden md:flex gap-8 font-bold text-gray-600 text-sm items-center">
-                <a href="index.html" class="text-purple-600">Home</a>
-                <a href="blog.html" class="hover:text-purple-600">Blog</a>
-                <a href="about.html" class="hover:text-purple-600">About Me</a>
-                <a href="contact.html" class="hover:text-purple-600">Contact</a>
-                <div class="flex gap-4 border-l pl-4 border-gray-200">
-                    <a href="https://github.com/pccodelitehub" target="_blank" class="hover:text-black"><i class="fab fa-github text-lg"></i></a>
-                    <a href="https://instagram.com/pc_codelite_hub" target="_blank" class="hover:text-pink-600"><i class="fab fa-instagram text-lg"></i></a>
-                </div>
-            </div>
-        </div>
-    </nav>
 
-    <header class="py-20 text-center px-4 bg-white border-b">
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Learn. Build. <span class="text-purple-600">Succeed.</span></h1>
-        <p class="text-gray-500 text-xl max-w-2xl mx-auto font-medium mb-10">Your all-in-one hub for coding, gaming, and education. Access 100+ premium resources curated by Vijay Saharan.</p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-            <input type="text" id="searchInput" onkeyup="renderHub()" placeholder="Search 100+ courses (Python, Class 12...)" class="w-full md:w-96 p-4 rounded-xl border-2 border-gray-100 focus:border-purple-600 outline-none shadow-sm">
-            <select id="categoryFilter" onchange="renderHub()" class="p-4 rounded-xl border-2 border-gray-100 font-bold text-gray-500">
-                <option value="All">All Categories</option>
-                <option value="Development">Coding</option>
-                <option value="Education">Education</option>
-                <option value="Platforms">Platforms</option>
-            </select>
-        </div>
+    <header class="py-20 text-center">
+        <h1 class="text-6xl font-black tracking-tighter mb-4">Vijay <span class="text-indigo-500">Saharan</span></h1>
+        <p class="text-slate-500 uppercase tracking-widest text-sm">Tech & Education Brand</p>
     </header>
 
-    <div id="platform-grid" class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-16">
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <div id="courseContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <p class="col-span-full text-center opacity-50 animate-pulse">Syncing System Data...</p>
         </div>
-
-    <footer class="bg-gray-900 text-gray-400 py-12 text-center">
-        <div class="flex justify-center gap-6 mb-6">
-            <a href="blog.html" class="hover:text-white">Blog</a>
-            <a href="about.html" class="hover:text-white">About Me</a>
-            <a href="contact.html" class="hover:text-white">Contact</a>
-            <a href="policy.html" class="hover:text-white">Policies</a>
-        </div>
-        <p class="text-xs font-bold uppercase tracking-widest text-gray-600">© 2026 Vijay Saharan Global</p>
-    </footer>
+    </main>
 
     <script>
-        const myWhatsApp = "919876543210"; // Update with your real number
-        let database = [];
-        async function init() {
-            const res = await fetch('courses.json?v=' + new Date().getTime());
-            database = await res.json();
-            renderHub();
+        async function loadCourses() {
+            const container = document.getElementById('courseContainer');
+            try {
+                // Fetch the clean JSON exported from Admin
+                const response = await fetch('courses.json');
+                const data = await response.json();
+                
+                // WIPE ALL OLD/ODD DATA
+                container.innerHTML = ""; 
+
+                data.forEach(course => {
+                    container.innerHTML += `
+                        <div class="glass p-8 rounded-[40px] border border-white/5 hover:border-indigo-500 transition-all group">
+                            <i class="${course.icon} text-4xl text-indigo-500 mb-6 transition-transform group-hover:scale-110"></i>
+                            <h3 class="text-2xl font-bold mb-2">${course.title}</h3>
+                            <p class="text-emerald-400 font-bold text-lg mb-6">${course.price}</p>
+                            <a href="${course.link}" class="block text-center bg-indigo-600 py-4 rounded-2xl font-bold hover:bg-indigo-500 transition-all">Explore Chapters</a>
+                        </div>
+                    `;
+                });
+            } catch (e) {
+                container.innerHTML = "<p class='col-span-full text-center text-red-500'>Error Syncing: Run Admin Export.</p>";
+            }
         }
-        function renderHub() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const category = document.getElementById('categoryFilter').value;
-            const container = document.getElementById('platform-grid');
-            container.innerHTML = "";
-            database.filter(item => (item.name.toLowerCase().includes(query)) && (category === "All" || item.cat === category))
-            .forEach(s => {
-                container.innerHTML += `
-                <div class="course-card p-6 flex flex-col h-full">
-                    <div class="h-44 bg-slate-50 rounded-xl mb-6 flex items-center justify-center text-slate-200 text-5xl italic font-black uppercase">
-                        ${s.cat.substring(0,3)}
-                    </div>
-                    <span class="text-[10px] font-black text-purple-600 uppercase tracking-widest mb-2">${s.cat}</span>
-                    <h3 class="text-xl font-bold mb-6 text-gray-800">${s.name}</h3>
-                    <div class="mt-auto">
-                        <a href="${s.isPaid ? 'https://wa.me/'+myWhatsApp+'?text=I want to buy '+s.name : s.url}" target="_blank" class="block w-full py-4 ${s.isPaid ? 'bg-purple-600 shadow-lg shadow-purple-100' : 'bg-gray-800'} text-white text-center rounded-xl font-bold hover:opacity-90">
-                            ${s.isPaid ? 'Get Enrolled ('+s.price+')' : 'Start Learning Free'}
-                        </a>
-                    </div>
-                </div>`;
-            });
-        }
-        init();
+        window.onload = loadCourses;
     </script>
 </body>
 </html>

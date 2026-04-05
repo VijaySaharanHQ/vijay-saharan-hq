@@ -100,3 +100,10 @@
   { "name": "UPSC International Rel.", "icon": "fa-globe-asia", "cat": "Education", "isPaid": true, "price": "₹199" },
   { "name": "Vijay Saharan Elite HQ", "icon": "fa-house-chimney-window", "cat": "Platforms", "isPaid": true, "price": "₹9999" }
 ]
+{
+"title": "Youtube tutorial for HTML ",
+"price": "₹100",
+"link": "pccodeltehub.wordpress.com",
+"category": "New Launch",
+"icon": "fas fa-code-branch"
+}

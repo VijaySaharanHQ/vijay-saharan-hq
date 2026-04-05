@@ -3,187 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vijay Saharan | System CMS</title>
+    <title>Admin CMS | Vijay Saharan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        body { background: #020617; color: white; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        body { background: #020617; color: white; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .admin-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
-        .course-card:hover { border-color: #6366f1; background: rgba(99, 102, 241, 0.05); }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
     </style>
 </head>
-<body class="min-h-screen pb-20">
+<body class="min-h-screen">
 
     <div id="authShield" class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center p-6">
         <div class="glass p-10 rounded-[40px] w-full max-w-md text-center">
-            <div class="w-16 h-16 admin-gradient rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3">
-                <i class="fas fa-shield-alt text-2xl"></i>
-            </div>
-            <h2 class="text-2xl font-black mb-8 tracking-tighter">System Authentication</h2>
-            <input type="password" id="pinInput" placeholder="PIN" maxlength="4" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-center mb-4 text-xl tracking-[1em] focus:border-indigo-500 outline-none">
-            <button onclick="verifyAccess()" class="w-full admin-gradient py-4 rounded-2xl font-bold uppercase text-xs tracking-widest">Access Command Center</button>
+            <h2 class="text-2xl font-black mb-8">System Login</h2>
+            <input type="password" id="pinInput" placeholder="PIN" maxlength="4" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-center mb-4 text-xl tracking-[1em] outline-none">
+            <button onclick="verify()" class="w-full admin-gradient py-4 rounded-2xl font-bold uppercase">Enter CMS</button>
         </div>
     </div>
 
-    <div id="cmsPanel" class="hidden">
-        <nav class="glass sticky top-0 z-50 px-6 py-4 flex justify-between items-center border-b border-white/5">
-            <div class="flex items-center gap-3">
-                <span class="p-2 bg-indigo-600 rounded-lg text-xs font-bold">VS</span>
-                <h1 class="text-sm font-black tracking-widest uppercase">Admin <span class="text-indigo-500">CMS</span></h1>
-            </div>
+    <div id="panel" class="hidden">
+        <nav class="glass p-6 flex justify-between items-center sticky top-0 z-50">
+            <h1 class="font-black tracking-tighter text-xl">VIJAY <span class="text-indigo-500">CMS</span></h1>
             <div class="flex gap-4">
-                <button onclick="exportData()" class="text-[10px] font-bold bg-emerald-500/10 text-emerald-500 px-4 py-2 rounded-lg border border-emerald-500/20">EXPORT JSON</button>
-                <button onclick="location.reload()" class="text-[10px] font-bold bg-red-500/10 text-red-500 px-4 py-2 rounded-lg">EXIT</button>
+                <button onclick="exportJSON()" class="bg-emerald-600 px-6 py-2 rounded-xl font-bold text-xs">EXPORT MASTER JSON</button>
+                <button onclick="location.reload()" class="bg-red-600 px-6 py-2 rounded-xl font-bold text-xs">LOGOUT</button>
             </div>
         </nav>
 
-        <main class="max-w-6xl mx-auto p-6 mt-8">
-            
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-                <div>
-                    <h2 class="text-3xl font-black tracking-tighter">Course Management</h2>
-                    <p class="text-slate-500 text-xs uppercase tracking-widest">Edit, Add or Remove content from Vijay Saharan HQ</p>
-                </div>
-                <button onclick="openCourseModal()" class="admin-gradient px-6 py-3 rounded-xl font-bold text-xs">+ ADD NEW COURSE</button>
+        <main class="max-w-6xl mx-auto p-6 md:p-12">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-3xl font-black">Live Course List</h2>
+                <button onclick="openModal()" class="admin-gradient px-6 py-3 rounded-xl font-bold text-xs">+ ADD COURSE</button>
             </div>
 
-            <div id="courseContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="courseList" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 </div>
         </main>
     </div>
 
-    <div id="courseModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[60] hidden flex items-center justify-center p-6">
-        <div class="glass w-full max-w-2xl rounded-[40px] p-8 md:p-12 overflow-y-auto max-h-[90vh]">
-            <div class="flex justify-between items-center mb-8">
-                <h3 id="modalTitle" class="text-2xl font-black">Add New Course</h3>
-                <button onclick="closeModal()" class="text-slate-500 hover:text-white"><i class="fas fa-times"></i></button>
-            </div>
-
-            <div class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold text-slate-500 uppercase">Title</label>
-                        <input type="text" id="courseTitle" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-indigo-500">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold text-slate-500 uppercase">Price (₹)</label>
-                        <input type="text" id="coursePrice" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-indigo-500">
-                    </div>
+    <div id="modal" class="fixed inset-0 bg-black/90 hidden z-[60] flex items-center justify-center p-6">
+        <div class="glass p-8 rounded-[40px] w-full max-w-lg">
+            <h3 id="modalTitle" class="text-xl font-bold mb-6">Course Details</h3>
+            <div class="space-y-4">
+                <input type="text" id="cTitle" placeholder="Course Title" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
+                <input type="text" id="cPrice" placeholder="Price (e.g. ₹499)" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
+                <input type="text" id="cLink" placeholder="Link to Chapters" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
+                <input type="text" id="cIcon" placeholder="FontAwesome Icon (e.g. fas fa-code)" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
+                <div class="flex gap-4 mt-6">
+                    <button onclick="closeModal()" class="flex-1 py-4 border border-white/10 rounded-xl">Cancel</button>
+                    <button onclick="saveCourse()" class="flex-1 admin-gradient py-4 rounded-xl font-bold">Save Changes</button>
                 </div>
-
-                <div class="space-y-2">
-                    <label class="text-[10px] font-bold text-slate-500 uppercase">Chapters (Comma Separated)</label>
-                    <textarea id="courseChapters" rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-indigo-500" placeholder="Chapter 1: Intro, Chapter 2: Setup..."></textarea>
-                </div>
-
-                <button onclick="saveCourse()" class="w-full admin-gradient py-4 rounded-2xl font-bold uppercase tracking-widest text-xs">Save Course Data</button>
             </div>
         </div>
     </div>
 
     <script>
-        const MASTER_PIN = "1234";
-        let courses = JSON.parse(localStorage.getItem('vijay_cms_data')) || [
-            { id: 1, title: "HTML Mastery", price: "499", chapters: ["Introduction", "Tags", "Forms", "Final Project"] }
-        ];
-        let editId = null;
+        let courses = JSON.parse(localStorage.getItem('vijay_data')) || [];
+        let editingId = null;
 
-        function verifyAccess() {
-            if(document.getElementById('pinInput').value === MASTER_PIN) {
-                document.getElementById('authShield').classList.add('hidden');
-                document.getElementById('cmsPanel').classList.remove('hidden');
-                renderCourses();
-            } else {
-                alert("ACCESS DENIED");
-                window.location.href = "index.html";
+        function verify() {
+            if(document.getElementById('pinInput').value === "1234") {
+                document.getElementById('authShield').style.display = 'none';
+                document.getElementById('panel').classList.remove('hidden');
+                render();
             }
         }
 
-        function renderCourses() {
-            const container = document.getElementById('courseContainer');
-            container.innerHTML = courses.map(c => `
-                <div class="glass p-6 rounded-[32px] border border-white/5 course-card transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-3 bg-indigo-500/10 rounded-xl text-indigo-500"><i class="fas fa-book"></i></div>
-                        <div class="flex gap-2">
-                            <button onclick="editCourse(${c.id})" class="text-slate-500 hover:text-white p-2"><i class="fas fa-edit"></i></button>
-                            <button onclick="deleteCourse(${c.id})" class="text-slate-500 hover:text-red-500 p-2"><i class="fas fa-trash"></i></button>
-                        </div>
+        function render() {
+            const list = document.getElementById('courseList');
+            list.innerHTML = courses.map(c => `
+                <div class="glass p-6 rounded-3xl flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold">${c.title}</h4>
+                        <p class="text-emerald-500 text-sm font-bold">${c.price}</p>
                     </div>
-                    <h4 class="font-bold text-lg mb-1">${c.title}</h4>
-                    <p class="text-emerald-500 font-bold text-sm mb-4">₹${c.price}</p>
-                    <div class="space-y-2">
-                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Chapters (${c.chapters.length})</p>
-                        <div class="flex flex-wrap gap-2">
-                            ${c.chapters.slice(0, 3).map(ch => `<span class="text-[9px] bg-white/5 px-2 py-1 rounded-md text-slate-400">${ch}</span>`).join('')}
-                            ${c.chapters.length > 3 ? `<span class="text-[9px] text-indigo-400 font-bold">+${c.chapters.length - 3} More</span>` : ''}
-                        </div>
+                    <div class="flex gap-2">
+                        <button onclick="edit(${c.id})" class="p-3 bg-white/5 rounded-xl hover:bg-indigo-600"><i class="fas fa-edit"></i></button>
+                        <button onclick="del(${c.id})" class="p-3 bg-white/5 rounded-xl hover:bg-red-600"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function openCourseModal() {
-            editId = null;
-            document.getElementById('modalTitle').innerText = "Add New Course";
-            document.getElementById('courseTitle').value = "";
-            document.getElementById('coursePrice').value = "";
-            document.getElementById('courseChapters').value = "";
-            document.getElementById('courseModal').classList.remove('hidden');
+        function openModal() {
+            editingId = null;
+            document.getElementById('cTitle').value = "";
+            document.getElementById('cPrice').value = "";
+            document.getElementById('cLink').value = "";
+            document.getElementById('cIcon').value = "fas fa-graduation-cap";
+            document.getElementById('modal').classList.remove('hidden');
         }
 
-        function editCourse(id) {
-            editId = id;
-            const course = courses.find(c => c.id === id);
-            document.getElementById('modalTitle').innerText = "Edit Course";
-            document.getElementById('courseTitle').value = course.title;
-            document.getElementById('coursePrice').value = course.price;
-            document.getElementById('courseChapters').value = course.chapters.join(', ');
-            document.getElementById('courseModal').classList.remove('hidden');
+        function edit(id) {
+            editingId = id;
+            const c = courses.find(x => x.id === id);
+            document.getElementById('cTitle').value = c.title;
+            document.getElementById('cPrice').value = c.price;
+            document.getElementById('cLink').value = c.link;
+            document.getElementById('cIcon').value = c.icon;
+            document.getElementById('modal').classList.remove('hidden');
         }
 
         function saveCourse() {
-            const title = document.getElementById('courseTitle').value;
-            const price = document.getElementById('coursePrice').value;
-            const chapters = document.getElementById('courseChapters').value.split(',').map(s => s.trim());
-
-            if(editId) {
-                const index = courses.findIndex(c => c.id === editId);
-                courses[index] = { ...courses[index], title, price, chapters };
+            const data = {
+                id: editingId || Date.now(),
+                title: document.getElementById('cTitle').value,
+                price: document.getElementById('cPrice').value,
+                link: document.getElementById('cLink').value,
+                icon: document.getElementById('cIcon').value
+            };
+            if(editingId) {
+                courses = courses.map(x => x.id === editingId ? data : x);
             } else {
-                courses.push({ id: Date.now(), title, price, chapters });
+                courses.push(data);
             }
-
-            localStorage.setItem('vijay_cms_data', JSON.stringify(courses));
+            localStorage.setItem('vijay_data', JSON.stringify(courses));
             closeModal();
-            renderCourses();
+            render();
         }
 
-        function deleteCourse(id) {
-            if(confirm("Are you sure you want to remove this course?")) {
-                courses = courses.filter(c => c.id !== id);
-                localStorage.setItem('vijay_cms_data', JSON.stringify(courses));
-                renderCourses();
+        function del(id) {
+            if(confirm("Remove this course?")) {
+                courses = courses.filter(x => x.id !== id);
+                localStorage.setItem('vijay_data', JSON.stringify(courses));
+                render();
             }
         }
 
-        function closeModal() {
-            document.getElementById('courseModal').classList.add('hidden');
-        }
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
 
-        function exportData() {
-            const dataStr = JSON.stringify(courses, null, 4);
-            const blob = new Blob([dataStr], { type: "application/json" });
+        function exportJSON() {
+            const blob = new Blob([JSON.stringify(courses, null, 4)], {type : 'application/json'});
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = "courses.json";
+            a.download = 'courses.json';
             a.click();
-            alert("JSON Exported! Upload this file to your GitHub repository to update the site.");
+            alert("Upload this file to GitHub now!");
         }
     </script>
 </body>

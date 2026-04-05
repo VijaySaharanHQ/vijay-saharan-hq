@@ -1,23 +1,902 @@
 [
     {
-        "id": 1775368445013,
         "title": "Python for Beginners",
-        "price": "499",
-        "link": "pccodelitehub.wordpress.com",
-        "icon": "Pythom Basic"
+        "price": "₹499",
+        "cat": "Programming",
+        "icon": "fab fa-python"
     },
     {
-        "id": 1775368496138,
         "title": "Advanced Python Programming",
-        "price": "799",
-        "link": "pccodelitehub.wordpress.com",
-        "icon": "Python Advance"
+        "price": "₹799",
+        "cat": "Programming",
+        "icon": "fab fa-python"
     },
     {
-        "id": 1775368551224,
         "title": "Java Programming Masterclass",
-        "price": "699",
-        "link": "pccodelitehub.wordpress.com",
-        "icon": "JAVA Master Class"
+        "price": "₹699",
+        "cat": "Programming",
+        "icon": "fab fa-java"
+    },
+    {
+        "title": "C++ Complete Course",
+        "price": "₹599",
+        "cat": "Programming",
+        "icon": "fas fa-code"
+    },
+    {
+        "title": "C Programming Basics",
+        "price": "₹399",
+        "cat": "Programming",
+        "icon": "fas fa-code"
+    },
+    {
+        "title": "Data Structures in C++",
+        "price": "₹799",
+        "cat": "Programming",
+        "icon": "fas fa-project-diagram"
+    },
+    {
+        "title": "JavaScript Essentials",
+        "price": "₹499",
+        "cat": "Programming",
+        "icon": "fab fa-js"
+    },
+    {
+        "title": "Advanced JavaScript",
+        "price": "₹799",
+        "cat": "Programming",
+        "icon": "fab fa-js"
+    },
+    {
+        "title": "Full Stack Web Development",
+        "price": "₹1499",
+        "cat": "Programming",
+        "icon": "fas fa-globe"
+    },
+    {
+        "title": "MERN Stack Bootcamp",
+        "price": "₹1599",
+        "cat": "Programming",
+        "icon": "fas fa-layer-group"
+    },
+    {
+        "title": "React JS Course",
+        "price": "₹899",
+        "cat": "Programming",
+        "icon": "fab fa-react"
+    },
+    {
+        "title": "Angular Complete Guide",
+        "price": "₹999",
+        "cat": "Programming",
+        "icon": "fab fa-angular"
+    },
+    {
+        "title": "Node.js Development",
+        "price": "₹899",
+        "cat": "Programming",
+        "icon": "fab fa-node-js"
+    },
+    {
+        "title": "PHP for Beginners",
+        "price": "₹499",
+        "cat": "Programming",
+        "icon": "fab fa-php"
+    },
+    {
+        "title": "Laravel Framework Course",
+        "price": "₹899",
+        "cat": "Programming",
+        "icon": "fab fa-laravel"
+    },
+    {
+        "title": "Django Web Development",
+        "price": "₹999",
+        "cat": "Programming",
+        "icon": "fas fa-server"
+    },
+    {
+        "title": "Flask Microservices",
+        "price": "₹799",
+        "cat": "Programming",
+        "icon": "fas fa-vial"
+    },
+    {
+        "title": "REST API Development",
+        "price": "₹699",
+        "cat": "Programming",
+        "icon": "fas fa-cloud"
+    },
+    {
+        "title": "GraphQL Basics",
+        "price": "₹699",
+        "cat": "Programming",
+        "icon": "fas fa-project-diagram"
+    },
+    {
+        "title": "TypeScript Course",
+        "price": "₹599",
+        "cat": "Programming",
+        "icon": "fab fa-js-square"
+    },
+    {
+        "title": "Go Programming",
+        "price": "₹799",
+        "cat": "Programming",
+        "icon": "fas fa-running"
+    },
+    {
+        "title": "Rust Programming",
+        "price": "₹999",
+        "cat": "Programming",
+        "icon": "fas fa-cogs"
+    },
+    {
+        "title": "Kotlin for Android",
+        "price": "₹899",
+        "cat": "Programming",
+        "icon": "fas fa-mobile-alt"
+    },
+    {
+        "title": "Swift for iOS",
+        "price": "₹999",
+        "cat": "Programming",
+        "icon": "fab fa-apple"
+    },
+    {
+        "title": "Android App Development",
+        "price": "₹1299",
+        "cat": "Programming",
+        "icon": "fab fa-android"
+    },
+    {
+        "title": "iOS App Development",
+        "price": "₹1499",
+        "cat": "Programming",
+        "icon": "fab fa-app-store"
+    },
+    {
+        "title": "Web Development Bootcamp",
+        "price": "₹1599",
+        "cat": "Programming",
+        "icon": "fas fa-laptop-code"
+    },
+    {
+        "title": "Git & GitHub Mastery",
+        "price": "₹399",
+        "cat": "Programming",
+        "icon": "fab fa-github"
+    },
+    {
+        "title": "DevOps Fundamentals",
+        "price": "₹999",
+        "cat": "Programming",
+        "icon": "fas fa-infinity"
+    },
+    {
+        "title": "Docker & Kubernetes",
+        "price": "₹1299",
+        "cat": "Programming",
+        "icon": "fab fa-docker"
+    },
+    {
+        "title": "CI/CD Pipelines",
+        "price": "₹899",
+        "cat": "Programming",
+        "icon": "fas fa-stream"
+    },
+    {
+        "title": "Microservices Architecture",
+        "price": "₹1199",
+        "cat": "Programming",
+        "icon": "fas fa-cubes"
+    },
+    {
+        "title": "System Design Basics",
+        "price": "₹999",
+        "cat": "Programming",
+        "icon": "fas fa-sitemap"
+    },
+    {
+        "title": "Competitive Programming",
+        "price": "₹699",
+        "cat": "Programming",
+        "icon": "fas fa-trophy"
+    },
+    {
+        "title": "Algorithms Masterclass",
+        "price": "₹999",
+        "cat": "Programming",
+        "icon": "fas fa-brain"
+    },
+    {
+        "title": "Software Engineering Principles",
+        "price": "₹799",
+        "cat": "Programming",
+        "icon": "fas fa-pencil-ruler"
+    },
+    {
+        "title": "OOP Concepts Deep Dive",
+        "price": "₹599",
+        "cat": "Programming",
+        "icon": "fas fa-cube"
+    },
+    {
+        "title": "Clean Code Practices",
+        "price": "₹499",
+        "cat": "Programming",
+        "icon": "fas fa-broom"
+    },
+    {
+        "title": "Design Patterns",
+        "price": "₹799",
+        "cat": "Programming",
+        "icon": "fas fa-th-large"
+    },
+    {
+        "title": "Debugging Techniques",
+        "price": "₹399",
+        "cat": "Programming",
+        "icon": "fas fa-bug"
+    },
+    {
+        "title": "Data Science Basics",
+        "price": "₹999",
+        "cat": "Data Science",
+        "icon": "fas fa-chart-pie"
+    },
+    {
+        "title": "Machine Learning A-Z",
+        "price": "₹1499",
+        "cat": "Data Science",
+        "icon": "fas fa-robot"
+    },
+    {
+        "title": "Deep Learning with TensorFlow",
+        "price": "₹1499",
+        "cat": "Data Science",
+        "icon": "fas fa-network-wired"
+    },
+    {
+        "title": "AI for Beginners",
+        "price": "₹799",
+        "cat": "Data Science",
+        "icon": "fas fa-microchip"
+    },
+    {
+        "title": "NLP Fundamentals",
+        "price": "₹999",
+        "cat": "Data Science",
+        "icon": "fas fa-language"
+    },
+    {
+        "title": "Computer Vision",
+        "price": "₹1199",
+        "cat": "Data Science",
+        "icon": "fas fa-eye"
+    },
+    {
+        "title": "Data Analysis with Python",
+        "price": "₹899",
+        "cat": "Data Science",
+        "icon": "fas fa-search-dollar"
+    },
+    {
+        "title": "Pandas & NumPy",
+        "price": "₹699",
+        "cat": "Data Science",
+        "icon": "fas fa-table"
+    },
+    {
+        "title": "Data Visualization",
+        "price": "₹699",
+        "cat": "Data Science",
+        "icon": "fas fa-chart-bar"
+    },
+    {
+        "title": "SQL for Data Science",
+        "price": "₹599",
+        "cat": "Data Science",
+        "icon": "fas fa-database"
+    },
+    {
+        "title": "Big Data Hadoop",
+        "price": "₹1199",
+        "cat": "Data Science",
+        "icon": "fas fa-elephant"
+    },
+    {
+        "title": "Spark for Data Engineering",
+        "price": "₹1299",
+        "cat": "Data Science",
+        "icon": "fas fa-bolt"
+    },
+    {
+        "title": "Power BI Course",
+        "price": "₹799",
+        "cat": "Data Science",
+        "icon": "fas fa-signal"
+    },
+    {
+        "title": "Tableau Mastery",
+        "price": "₹899",
+        "cat": "Data Science",
+        "icon": "fas fa-columns"
+    },
+    {
+        "title": "Excel for Data Analysis",
+        "price": "₹499",
+        "cat": "Data Science",
+        "icon": "fas fa-file-excel"
+    },
+    {
+        "title": "Statistics for Data Science",
+        "price": "₹799",
+        "cat": "Data Science",
+        "icon": "fas fa-percentage"
+    },
+    {
+        "title": "R Programming",
+        "price": "₹699",
+        "cat": "Data Science",
+        "icon": "fab fa-r-project"
+    },
+    {
+        "title": "AI Chatbot Development",
+        "price": "₹999",
+        "cat": "Data Science",
+        "icon": "fas fa-comment-dots"
+    },
+    {
+        "title": "Reinforcement Learning",
+        "price": "₹1499",
+        "cat": "Data Science",
+        "icon": "fas fa-gamepad"
+    },
+    {
+        "title": "Generative AI Basics",
+        "price": "₹999",
+        "cat": "Data Science",
+        "icon": "fas fa-magic"
+    },
+    {
+        "title": "Prompt Engineering",
+        "price": "₹599",
+        "cat": "Data Science",
+        "icon": "fas fa-terminal"
+    },
+    {
+        "title": "AI Ethics",
+        "price": "₹399",
+        "cat": "Data Science",
+        "icon": "fas fa-balance-scale"
+    },
+    {
+        "title": "Data Engineering",
+        "price": "₹1199",
+        "cat": "Data Science",
+        "icon": "fas fa-tools"
+    },
+    {
+        "title": "Time Series Analysis",
+        "price": "₹999",
+        "cat": "Data Science",
+        "icon": "fas fa-history"
+    },
+    {
+        "title": "Predictive Modeling",
+        "price": "₹999",
+        "cat": "Data Science",
+        "icon": "fas fa-crystal-ball"
+    },
+    {
+        "title": "Business Analytics",
+        "price": "₹899",
+        "cat": "Data Science",
+        "icon": "fas fa-chart-line"
+    },
+    {
+        "title": "Decision Trees & Random Forest",
+        "price": "₹799",
+        "cat": "Data Science",
+        "icon": "fas fa-tree"
+    },
+    {
+        "title": "Neural Networks",
+        "price": "₹999",
+        "cat": "Data Science",
+        "icon": "fas fa-brain"
+    },
+    {
+        "title": "MLOps Fundamentals",
+        "price": "₹1299",
+        "cat": "Data Science",
+        "icon": "fas fa-cogs"
+    },
+    {
+        "title": "AI Project Deployment",
+        "price": "₹1199",
+        "cat": "Data Science",
+        "icon": "fas fa-upload"
+    },
+    {
+        "title": "Cybersecurity Basics",
+        "price": "₹799",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-shield-alt"
+    },
+    {
+        "title": "Ethical Hacking",
+        "price": "₹1499",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-user-secret"
+    },
+    {
+        "title": "Network Security",
+        "price": "₹999",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-network-wired"
+    },
+    {
+        "title": "Penetration Testing",
+        "price": "₹1299",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-skull-crossbones"
+    },
+    {
+        "title": "Kali Linux Course",
+        "price": "₹899",
+        "cat": "Cybersecurity",
+        "icon": "fab fa-linux"
+    },
+    {
+        "title": "Cryptography Basics",
+        "price": "₹699",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-key"
+    },
+    {
+        "title": "Web Security",
+        "price": "₹999",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-lock"
+    },
+    {
+        "title": "Bug Bounty Hunting",
+        "price": "₹1199",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-bug"
+    },
+    {
+        "title": "CEH Preparation",
+        "price": "₹1499",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-certificate"
+    },
+    {
+        "title": "Digital Forensics",
+        "price": "₹999",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-microscope"
+    },
+    {
+        "title": "Cloud Security",
+        "price": "₹1199",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-cloud-lock"
+    },
+    {
+        "title": "Firewall Management",
+        "price": "₹699",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-border-all"
+    },
+    {
+        "title": "VPN & Privacy",
+        "price": "₹499",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-user-shield"
+    },
+    {
+        "title": "SOC Analyst Training",
+        "price": "₹1299",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-desktop"
+    },
+    {
+        "title": "Malware Analysis",
+        "price": "₹1399",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-biohazard"
+    },
+    {
+        "title": "Security Operations",
+        "price": "₹999",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-pills"
+    },
+    {
+        "title": "Network Fundamentals",
+        "price": "₹699",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-ethernet"
+    },
+    {
+        "title": "CCNA Preparation",
+        "price": "₹1499",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-graduation-cap"
+    },
+    {
+        "title": "Advanced Networking",
+        "price": "₹1199",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-project-diagram"
+    },
+    {
+        "title": "Wireshark Analysis",
+        "price": "₹799",
+        "cat": "Cybersecurity",
+        "icon": "fas fa-search"
+    },
+    {
+        "title": "Game Development Basics",
+        "price": "₹799",
+        "cat": "Game",
+        "icon": "fas fa-gamepad"
+    },
+    {
+        "title": "Unity Game Development",
+        "price": "₹1299",
+        "cat": "Game",
+        "icon": "fab fa-unity"
+    },
+    {
+        "title": "Unreal Engine Course",
+        "price": "₹1499",
+        "cat": "Game",
+        "icon": "fas fa-dragon"
+    },
+    {
+        "title": "2D Game Development",
+        "price": "₹899",
+        "cat": "Game",
+        "icon": "fas fa-square"
+    },
+    {
+        "title": "3D Game Development",
+        "price": "₹1199",
+        "cat": "Game",
+        "icon": "fas fa-cube"
+    },
+    {
+        "title": "Game Design Theory",
+        "price": "₹699",
+        "cat": "Game",
+        "icon": "fas fa-pen-nib"
+    },
+    {
+        "title": "C# for Unity",
+        "price": "₹799",
+        "cat": "Game",
+        "icon": "fas fa-code"
+    },
+    {
+        "title": "Blender for Game Assets",
+        "price": "₹999",
+        "cat": "Game",
+        "icon": "fas fa-palette"
+    },
+    {
+        "title": "Mobile Game Development",
+        "price": "₹1099",
+        "cat": "Game",
+        "icon": "fas fa-mobile"
+    },
+    {
+        "title": "AR/VR Development",
+        "price": "₹1499",
+        "cat": "Game",
+        "icon": "fas fa-vr-cardboard"
+    },
+    {
+        "title": "Game Physics",
+        "price": "₹899",
+        "cat": "Game",
+        "icon": "fas fa-atom"
+    },
+    {
+        "title": "Multiplayer Game Dev",
+        "price": "₹1399",
+        "cat": "Game",
+        "icon": "fas fa-users"
+    },
+    {
+        "title": "Indie Game Launch Guide",
+        "price": "₹699",
+        "cat": "Game",
+        "icon": "fas fa-rocket"
+    },
+    {
+        "title": "Game UI/UX Design",
+        "price": "₹799",
+        "cat": "Game",
+        "icon": "fas fa-window-maximize"
+    },
+    {
+        "title": "Gaming Monetization",
+        "price": "₹599",
+        "cat": "Game",
+        "icon": "fas fa-dollar-sign"
+    },
+    {
+        "title": "Graphic Design Basics",
+        "price": "₹499",
+        "cat": "Design",
+        "icon": "fas fa-draw-polygon"
+    },
+    {
+        "title": "Photoshop Mastery",
+        "price": "₹799",
+        "cat": "Design",
+        "icon": "fas fa-image"
+    },
+    {
+        "title": "Illustrator Course",
+        "price": "₹799",
+        "cat": "Design",
+        "icon": "fas fa-bezier-curve"
+    },
+    {
+        "title": "Canva Design Course",
+        "price": "₹399",
+        "cat": "Design",
+        "icon": "fas fa-paint-brush"
+    },
+    {
+        "title": "UI/UX Design",
+        "price": "₹999",
+        "cat": "Design",
+        "icon": "fas fa-vector-square"
+    },
+    {
+        "title": "Figma Complete Guide",
+        "price": "₹699",
+        "cat": "Design",
+        "icon": "fab fa-figma"
+    },
+    {
+        "title": "Web Design Fundamentals",
+        "price": "₹599",
+        "cat": "Design",
+        "icon": "fas fa-window-restore"
+    },
+    {
+        "title": "Logo Design Masterclass",
+        "price": "₹499",
+        "cat": "Design",
+        "icon": "fas fa-stamp"
+    },
+    {
+        "title": "Motion Graphics",
+        "price": "₹999",
+        "cat": "Design",
+        "icon": "fas fa-film"
+    },
+    {
+        "title": "Video Editing",
+        "price": "₹799",
+        "cat": "Design",
+        "icon": "fas fa-video"
+    },
+    {
+        "title": "Premiere Pro Course",
+        "price": "₹899",
+        "cat": "Design",
+        "icon": "fas fa-play"
+    },
+    {
+        "title": "After Effects",
+        "price": "₹999",
+        "cat": "Design",
+        "icon": "fas fa-magic"
+    },
+    {
+        "title": "3D Animation",
+        "price": "₹1299",
+        "cat": "Design",
+        "icon": "fas fa-walking"
+    },
+    {
+        "title": "Branding & Identity",
+        "price": "₹699",
+        "cat": "Design",
+        "icon": "fas fa-briefcase"
+    },
+    {
+        "title": "Digital Illustration",
+        "price": "₹799",
+        "cat": "Design",
+        "icon": "fas fa-pen-alt"
+    },
+    {
+        "title": "Digital Marketing",
+        "price": "₹999",
+        "cat": "Business",
+        "icon": "fas fa-bullhorn"
+    },
+    {
+        "title": "SEO Mastery",
+        "price": "₹799",
+        "cat": "Business",
+        "icon": "fas fa-search-plus"
+    },
+    {
+        "title": "Social Media Marketing",
+        "price": "₹699",
+        "cat": "Business",
+        "icon": "fab fa-instagram"
+    },
+    {
+        "title": "Content Writing",
+        "price": "₹499",
+        "cat": "Business",
+        "icon": "fas fa-keyboard"
+    },
+    {
+        "title": "Blogging Masterclass",
+        "price": "₹599",
+        "cat": "Business",
+        "icon": "fas fa-blog"
+    },
+    {
+        "title": "Affiliate Marketing",
+        "price": "₹699",
+        "cat": "Business",
+        "icon": "fas fa-link"
+    },
+    {
+        "title": "Email Marketing",
+        "price": "₹499",
+        "cat": "Business",
+        "icon": "fas fa-envelope-open-text"
+    },
+    {
+        "title": "YouTube Growth Course",
+        "price": "₹799",
+        "cat": "Business",
+        "icon": "fab fa-youtube"
+    },
+    {
+        "title": "Personal Branding",
+        "price": "₹699",
+        "cat": "Business",
+        "icon": "fas fa-user-circle"
+    },
+    {
+        "title": "Freelancing Guide",
+        "price": "₹499",
+        "cat": "Business",
+        "icon": "fas fa-laptop-house"
+    },
+    {
+        "title": "Entrepreneurship Basics",
+        "price": "₹799",
+        "cat": "Business",
+        "icon": "fas fa-lightbulb"
+    },
+    {
+        "title": "Startup Launch Course",
+        "price": "₹999",
+        "cat": "Business",
+        "icon": "fas fa-rocket"
+    },
+    {
+        "title": "E-commerce Business",
+        "price": "₹899",
+        "cat": "Business",
+        "icon": "fas fa-shopping-cart"
+    },
+    {
+        "title": "Dropshipping Course",
+        "price": "₹799",
+        "cat": "Business",
+        "icon": "fas fa-box-open"
+    },
+    {
+        "title": "Shopify Development",
+        "price": "₹999",
+        "cat": "Business",
+        "icon": "fab fa-shopify"
+    },
+    {
+        "title": "Amazon Selling",
+        "price": "₹799",
+        "cat": "Business",
+        "icon": "fab fa-amazon"
+    },
+    {
+        "title": "Stock Market Basics",
+        "price": "₹699",
+        "cat": "Business",
+        "icon": "fas fa-chart-line"
+    },
+    {
+        "title": "Cryptocurrency Basics",
+        "price": "₹799",
+        "cat": "Business",
+        "icon": "fab fa-bitcoin"
+    },
+    {
+        "title": "Financial Literacy",
+        "price": "₹499",
+        "cat": "Business",
+        "icon": "fas fa-wallet"
+    },
+    {
+        "title": "Time Management",
+        "price": "₹399",
+        "cat": "Business",
+        "icon": "fas fa-hourglass-half"
+    },
+    {
+        "title": "Productivity Mastery",
+        "price": "₹499",
+        "cat": "Business",
+        "icon": "fas fa-tachometer-alt"
+    },
+    {
+        "title": "Communication Skills",
+        "price": "₹399",
+        "cat": "Business",
+        "icon": "fas fa-comments"
+    },
+    {
+        "title": "Public Speaking",
+        "price": "₹499",
+        "cat": "Business",
+        "icon": "fas fa-microphone"
+    },
+    {
+        "title": "Leadership Skills",
+        "price": "₹699",
+        "cat": "Business",
+        "icon": "fas fa-users-cog"
+    },
+    {
+        "title": "Negotiation Skills",
+        "price": "₹599",
+        "cat": "Business",
+        "icon": "fas fa-handshake"
+    },
+    {
+        "title": "Career Development",
+        "price": "₹499",
+        "cat": "Business",
+        "icon": "fas fa-user-graduate"
+    },
+    {
+        "title": "Resume Building",
+        "price": "₹299",
+        "cat": "Business",
+        "icon": "fas fa-file-pdf"
+    },
+    {
+        "title": "Interview Preparation",
+        "price": "₹399",
+        "cat": "Business",
+        "icon": "fas fa-user-tie"
+    },
+    {
+        "title": "Remote Work Skills",
+        "price": "₹499",
+        "cat": "Business",
+        "icon": "fas fa-home"
+    },
+    {
+        "title": "Office Tools (MS Office)",
+        "price": "₹399",
+        "cat": "Business",
+        "icon": "fas fa-file-word"
     }
 ]
